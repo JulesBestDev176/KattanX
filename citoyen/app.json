@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "KattanX - Portail Citoyen",
+    "slug": "citizen-portal-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#3b82f6"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "sdkVersion": "54.0.0",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kattanx.citizenportal"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#3b82f6"
+      },
+      "package": "com.kattanx.citizenportal"
+    },
+    "web": {
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font"
+    ]
+  }
+}
