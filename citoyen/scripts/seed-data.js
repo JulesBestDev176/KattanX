@@ -51,26 +51,7 @@ const testData = {
     }
   ],
   
-  proprietes: [
-    {
-      type: 'titre_foncier',
-      titre: 'Maison à Almadies',
-      reference: 'TF-001',
-      details: '150m² - Zone résidentielle'
-    },
-    {
-      type: 'voiture',
-      titre: 'Toyota Corolla 2020',
-      reference: 'VH-002',
-      details: 'Gris métallisé - Automatique'
-    },
-    {
-      type: 'titre_foncier',
-      titre: 'Terrain à Thiès',
-      reference: 'TF-003',
-      details: '500m² - Zone agricole'
-    }
-  ],
+
   
   denonciations: [
     {
@@ -186,11 +167,7 @@ testData.dossiers.forEach((doc, i) => {
 });
 console.log('');
 
-console.log('🏠 Propriétés :');
-testData.proprietes.forEach((prop, i) => {
-  console.log(`   ${i + 1}. ${prop.titre} (${prop.type})`);
-});
-console.log('');
+
 
 console.log('⚠️  Dénonciations :');
 testData.denonciations.forEach((den, i) => {
@@ -221,7 +198,7 @@ console.log('');
 console.log('1. Créer les tables dans Supabase :');
 console.log('   - users (avec auth)');
 console.log('   - dossiers');
-console.log('   - proprietes');
+
 console.log('   - denonciations');
 console.log('   - plaintes');
 console.log('   - revenus');
@@ -233,7 +210,7 @@ console.log('   - request-otp');
 console.log('   - verify-otp');
 console.log('   - profile');
 console.log('   - dossiers');
-console.log('   - proprietes');
+
 console.log('   - denonciations');
 console.log('   - plaintes');
 console.log('   - revenus');

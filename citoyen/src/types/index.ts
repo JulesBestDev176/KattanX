@@ -1,4 +1,4 @@
-export type Screen = 'auth' | 'home' | 'profile' | 'dossier' | 'proprietes' | 'denonciations' | 'plaintes' | 'revenus';
+export type Screen = 'auth' | 'home' | 'profile' | 'dossier' | 'denonciations' | 'plaintes' | 'revenus';
 
 export interface User {
   id: string;
@@ -18,16 +18,7 @@ export interface Dossier {
   statut?: 'valide' | 'expire' | 'en_attente';
 }
 
-export interface Propriete {
-  id: string;
-  type: 'maison' | 'voiture' | 'terrain' | 'appartement' | 'commerce' | 'autre';
-  titre: string;
-  reference: string;
-  adresse?: string;
-  superficie?: string;
-  details: string;
-  dateAcquisition?: string;
-}
+
 
 export interface Denonciation {
   id: string;

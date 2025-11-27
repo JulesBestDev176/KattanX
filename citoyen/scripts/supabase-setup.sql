@@ -16,15 +16,7 @@ CREATE TABLE IF NOT EXISTS dossiers (
 );
 
 -- Table des propriétés
-CREATE TABLE IF NOT EXISTS proprietes (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
-  type TEXT NOT NULL CHECK (type IN ('titre_foncier', 'voiture', 'autre')),
-  titre TEXT NOT NULL,
-  reference TEXT NOT NULL,
-  details TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+
 
 -- Table des dénonciations
 CREATE TABLE IF NOT EXISTS denonciations (
@@ -77,7 +69,7 @@ CREATE TABLE IF NOT EXISTS revenus (
 
 -- Activer RLS sur toutes les tables
 ALTER TABLE dossiers ENABLE ROW LEVEL SECURITY;
-ALTER TABLE proprietes ENABLE ROW LEVEL SECURITY;
+
 ALTER TABLE denonciations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE plaintes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE transactions ENABLE ROW LEVEL SECURITY;
@@ -90,12 +82,7 @@ CREATE POLICY "Users can view their own dossiers" ON dossiers
 CREATE POLICY "Users can insert their own dossiers" ON dossiers
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 
--- Politiques pour proprietes
-CREATE POLICY "Users can view their own proprietes" ON proprietes
-  FOR SELECT USING (auth.uid() = user_id);
 
-CREATE POLICY "Users can insert their own proprietes" ON proprietes
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
 
 -- Politiques pour denonciations
 CREATE POLICY "Users can view their own denonciations" ON denonciations
@@ -151,10 +138,7 @@ INSERT INTO dossiers (user_id, type, numero, date_emission) VALUES
   ('USER_1_UUID', 'Permis de Construire', 'PC-2024-003', '10/03/2024');
 
 -- Propriétés pour user1
-INSERT INTO proprietes (user_id, type, titre, reference, details) VALUES
-  ('USER_1_UUID', 'titre_foncier', 'Maison à Almadies', 'TF-001', '150m² - Zone résidentielle'),
-  ('USER_1_UUID', 'voiture', 'Toyota Corolla 2020', 'VH-002', 'Gris métallisé - Automatique'),
-  ('USER_1_UUID', 'titre_foncier', 'Terrain à Thiès', 'TF-003', '500m² - Zone agricole');
+
 
 -- Dénonciations pour user1
 INSERT INTO denonciations (user_id, type, description, localisation, preuve_type, status, created_at) VALUES
@@ -184,8 +168,7 @@ INSERT INTO transactions (user_id, amount, type, method, account_number, status,
 INSERT INTO dossiers (user_id, type, numero, date_emission) VALUES
   ('USER_2_UUID', 'Carte d''Identité', 'CNI-2024-004', '01/02/2024');
 
-INSERT INTO proprietes (user_id, type, titre, reference, details) VALUES
-  ('USER_2_UUID', 'voiture', 'Peugeot 208', 'VH-004', 'Blanc - Manuel');
+
 
 INSERT INTO denonciations (user_id, type, description, localisation, preuve_type, status, created_at) VALUES
   ('USER_2_UUID', 'Fuite d''eau', 'Fuite importante sur la voie publique.', 'Rue de la République', 'image', 'Vérifiée', '2024-03-14 13:00:00');
@@ -246,7 +229,7 @@ EXECUTE FUNCTION update_revenus_on_transaction();
 
 -- Pour vérifier que tout fonctionne :
 -- SELECT * FROM dossiers;
--- SELECT * FROM proprietes;
+
 -- SELECT * FROM denonciations;
 -- SELECT * FROM plaintes;
 -- SELECT * FROM transactions;

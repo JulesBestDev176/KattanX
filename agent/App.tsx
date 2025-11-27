@@ -4,18 +4,15 @@ import { StatusBar } from 'expo-status-bar';
 import { AuthScreen } from './src/screens/AuthScreen';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { ProfileScreen } from './src/screens/ProfileScreen';
-import { DossierScreen } from './src/screens/DossierScreen';
-
-import { DenonciationsScreen } from './src/screens/DenonciationsScreen';
-import { PlaintesScreen } from './src/screens/PlaintesScreen';
-import { RevenusScreen } from './src/screens/RevenusScreen';
+import { VerificationScreen } from './src/screens/VerificationScreen';
+import { AlertsScreen } from './src/screens/AlertsScreen';
 import { Toast, toast } from './src/components/ui/Toast';
 import { storage } from './src/utils/storage';
-import { User, Screen } from './src/types';
+import { Agent, Screen } from './src/types';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('auth');
-  const [user, setUser] = useState<User | null>(null);
+  const [agent, setAgent] = useState<Agent | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isReady, setIsReady] = useState(false);
 
@@ -38,11 +35,11 @@ export default function App() {
 
   const checkSession = async () => {
     try {
-      const storedUser = await storage.getUser();
+      const storedAgent = await storage.getAgent();
       const storedToken = await storage.getToken();
 
-      if (storedUser && storedToken) {
-        setUser(storedUser);
+      if (storedAgent && storedToken) {
+        setAgent(storedAgent);
         setAccessToken(storedToken);
         setCurrentScreen('home');
       }
@@ -53,16 +50,16 @@ export default function App() {
     }
   };
 
-  const handleLogin = async (userData: User, token: string) => {
-    setUser(userData);
+  const handleLogin = async (agentData: Agent, token: string) => {
+    setAgent(agentData);
     setAccessToken(token);
-    await storage.saveUser(userData);
+    await storage.saveAgent(agentData);
     await storage.saveToken(token);
     setCurrentScreen('home');
   };
 
   const handleLogout = async () => {
-    setUser(null);
+    setAgent(null);
     setAccessToken(null);
     await storage.clear();
     setCurrentScreen('auth');
@@ -72,9 +69,9 @@ export default function App() {
     setCurrentScreen(screen);
   };
 
-  const handleUpdateUser = async (updatedUser: User) => {
-    setUser(updatedUser);
-    await storage.saveUser(updatedUser);
+  const handleUpdateAgent = async (updatedAgent: Agent) => {
+    setAgent(updatedAgent);
+    await storage.saveAgent(updatedAgent);
   };
 
   if (!isReady) {
@@ -87,50 +84,32 @@ export default function App() {
       
       {currentScreen === 'auth' && <AuthScreen onLogin={handleLogin} />}
       
-      {currentScreen === 'home' && user && (
+      {currentScreen === 'home' && agent && (
         <HomeScreen
-          user={user}
+          agent={agent}
           onNavigate={navigateTo}
+          onLogout={handleLogout}
+          onUpdateAgent={handleUpdateAgent}
+        />
+      )}
+      
+      {currentScreen === 'profile' && agent && (
+        <ProfileScreen
+          agent={agent}
+          onBack={() => navigateTo('home')}
           onLogout={handleLogout}
         />
       )}
       
-      {currentScreen === 'profile' && user && accessToken && (
-        <ProfileScreen
-          user={user}
-          accessToken={accessToken}
-          onBack={() => navigateTo('home')}
-          onUpdateUser={handleUpdateUser}
-        />
-      )}
-      
-      {currentScreen === 'dossier' && accessToken && user && (
-        <DossierScreen
-          accessToken={accessToken}
-          user={user}
+      {currentScreen === 'verification' && (
+        <VerificationScreen
           onBack={() => navigateTo('home')}
         />
       )}
       
-
-      
-      {currentScreen === 'denonciations' && accessToken && (
-        <DenonciationsScreen
-          accessToken={accessToken}
-          onBack={() => navigateTo('home')}
-        />
-      )}
-      
-      {currentScreen === 'plaintes' && accessToken && (
-        <PlaintesScreen
-          accessToken={accessToken}
-          onBack={() => navigateTo('home')}
-        />
-      )}
-      
-      {currentScreen === 'revenus' && accessToken && (
-        <RevenusScreen
-          accessToken={accessToken}
+      {currentScreen === 'alerts' && (
+        <AlertsScreen
+          agentPosition={agent?.position}
           onBack={() => navigateTo('home')}
         />
       )}
@@ -150,6 +129,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-
-

@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "Agent Portal KattanX",
+    "slug": "agent-portal-kattanx",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#003D7A"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Cette application a besoin d'accéder à la caméra pour vérifier les individus et créer des alertes.",
+        "NSPhotoLibraryUsageDescription": "Cette application a besoin d'accéder à vos photos pour vérifier les individus et créer des alertes.",
+        "NSLocationWhenInUseUsageDescription": "Cette application a besoin de votre localisation pour partager votre position en service et afficher les alertes à proximité.",
+        "NSLocationAlwaysUsageDescription": "Cette application a besoin de votre localisation en arrière-plan pour partager votre position en service."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#003D7A"
+      },
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

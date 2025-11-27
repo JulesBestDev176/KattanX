@@ -48,13 +48,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       color: colors.primary,
       description: 'Documents administratifs',
     },
-    {
-      id: 'proprietes',
-      icon: 'business',
-      label: 'Propriétés',
-      color: colors.primary,
-      description: 'Titres fonciers, véhicules',
-    },
+
     {
       id: 'denonciations',
       icon: 'alert-circle',
