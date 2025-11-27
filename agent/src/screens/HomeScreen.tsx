@@ -215,26 +215,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </View>
           </View>
 
-          {/* Stats */}
-          {agent.stats && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Statistiques</Text>
-              <View style={styles.statsGrid}>
-                <View style={styles.statCard}>
-                  <Text style={styles.statValue}>{agent.stats.verificationsEffectuees}</Text>
-                  <Text style={styles.statLabel}>Vérifications</Text>
-                </View>
-                <View style={styles.statCard}>
-                  <Text style={styles.statValue}>{agent.stats.alertesCreees}</Text>
-                  <Text style={styles.statLabel}>Alertes créées</Text>
-                </View>
-                <View style={styles.statCard}>
-                  <Text style={styles.statValue}>{agent.stats.arrestations}</Text>
-                  <Text style={styles.statLabel}>Arrestations</Text>
-                </View>
-              </View>
-            </View>
-          )}
+          {/* Stats removed as per user request */}
         </ScrollView>
       </View>
     </SafeAreaView>

@@ -22,6 +22,60 @@ interface VerificationScreenProps {
   onBack: () => void;
 }
 
+// Données de démonstration pour l'individu toujours trouvé
+const MOCK_INDIVIDU: IndividuVerifie = {
+  id: 'ind-demo-001',
+  cni: '1752198901234',
+  nom: 'DIOP',
+  prenom: 'Moussa',
+  dateNaissance: '1989-05-12',
+  photo: 'https://randomuser.me/api/portraits/men/32.jpg',
+  tel: '77 123 45 67',
+  adresse: 'Parcelles Assainies, Unité 15, Dakar',
+  estRecherche: true,
+  motifRecherche: 'Vol aggravé et délit de fuite',
+  estConnuJustice: true,
+  totalAmendes: 150000,
+  amendes: [
+    {
+      id: 'amd-1',
+      montant: 50000,
+      motif: 'Excès de vitesse',
+      date: '2023-11-15',
+      status: 'impayee',
+      commissariat: 'Central',
+    },
+    {
+      id: 'amd-2',
+      montant: 100000,
+      motif: 'Défaut de permis',
+      date: '2023-10-01',
+      status: 'impayee',
+      commissariat: 'Dieuppeul',
+    }
+  ],
+  casierJudiciaire: [
+    {
+      id: 'cj-1',
+      type: 'condamnation',
+      description: 'Vol simple',
+      date: '2020-03-15',
+      peine: '6 mois avec sursis',
+      lieu: 'Dakar',
+    }
+  ],
+  vehicules: [
+    {
+      id: 'veh-1',
+      matricule: 'DK-2468-AA',
+      marque: 'Peugeot',
+      modele: '307',
+      couleur: 'Gris',
+      proprietaireId: 'ind-demo-001',
+    }
+  ]
+};
+
 export const VerificationScreen: React.FC<VerificationScreenProps> = ({ onBack }) => {
   const [selectedMethod, setSelectedMethod] = useState<'cni' | 'matricule' | 'photo'>('cni');
   const [loading, setLoading] = useState(false);
@@ -31,66 +85,35 @@ export const VerificationScreen: React.FC<VerificationScreenProps> = ({ onBack }
   const [individu, setIndividu] = useState<IndividuVerifie | null>(null);
 
   const handleVerifyByCNI = async () => {
-    if (!cniInput) {
-      toast.error('Veuillez saisir un numéro CNI');
-      return;
-    }
-
+    // Simulation de chargement
     setLoading(true);
-    try {
-      const result = await searchByCNI(cniInput);
-      if (result) {
-        setIndividu(result);
-        toast.success('Individu trouvé');
-      } else {
-        toast.error('Aucun individu trouvé avec ce CNI');
-      }
-    } catch (error) {
-      toast.error('Erreur lors de la recherche');
-    } finally {
+    setTimeout(() => {
       setLoading(false);
-    }
+      setIndividu(MOCK_INDIVIDU);
+      toast.success('Individu trouvé (Mode Démo)');
+    }, 1500);
   };
 
   const handleVerifyByMatricule = async () => {
-    if (!matriculeInput) {
-      toast.error('Veuillez saisir un matricule');
-      return;
-    }
-
+    // Simulation de chargement
     setLoading(true);
-    try {
-      const result = await searchByMatricule(matriculeInput);
-      if (result) {
-        setIndividu(result.proprietaire);
-        toast.success('Propriétaire du véhicule trouvé');
-      } else {
-        toast.error('Aucun véhicule trouvé avec ce matricule');
-      }
-    } catch (error) {
-      toast.error('Erreur lors de la recherche');
-    } finally {
+    setTimeout(() => {
       setLoading(false);
-    }
+      setIndividu(MOCK_INDIVIDU);
+      toast.success('Propriétaire trouvé (Mode Démo)');
+    }, 1500);
   };
 
   const handlePhotoCapture = async (imageUri: string) => {
     setShowCamera(false);
     setLoading(true);
     
-    try {
-      const result = await analyzePhotoForFaceRecognition(imageUri);
-      if (result) {
-        setIndividu(result);
-        toast.success('Individu identifié par reconnaissance faciale');
-      } else {
-        toast.error('Aucun individu reconnu sur cette photo');
-      }
-    } catch (error) {
-      toast.error('Erreur lors de l\'analyse de la photo');
-    } finally {
+    // Simulation d'analyse IA
+    setTimeout(() => {
       setLoading(false);
-    }
+      setIndividu(MOCK_INDIVIDU);
+      toast.success('Identification faciale réussie (Mode Démo)');
+    }, 2000);
   };
 
   return (

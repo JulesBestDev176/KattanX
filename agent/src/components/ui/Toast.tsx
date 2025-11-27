@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Animated, Dimensions, Platform } from 'react-native';
 import { colors } from '../../theme/colors';
+import { Ionicons } from '@expo/vector-icons';
 
 interface ToastProps {
   message: string;
@@ -18,11 +19,11 @@ export const Toast: React.FC<ToastProps> = ({
   duration = 3000,
 }) => {
   const opacity = React.useRef(new Animated.Value(0)).current;
-  const translateY = React.useRef(new Animated.Value(-100)).current;
+  const translateY = React.useRef(new Animated.Value(100)).current;
 
   useEffect(() => {
     if (visible) {
-      // Slide in and fade in
+      // Slide up and fade in
       Animated.parallel([
         Animated.timing(opacity, {
           toValue: 1,
@@ -53,7 +54,7 @@ export const Toast: React.FC<ToastProps> = ({
         useNativeDriver: true,
       }),
       Animated.timing(translateY, {
-        toValue: -100,
+        toValue: 100,
         duration: 300,
         useNativeDriver: true,
       }),
@@ -62,19 +63,31 @@ export const Toast: React.FC<ToastProps> = ({
     });
   };
 
-  if (!visible && opacity._value === 0) {
+  if (!visible && (opacity as any)._value === 0) {
     return null;
   }
 
   const getBackgroundColor = () => {
     switch (type) {
       case 'success':
-        return colors.success;
+        return '#10B981'; // Emerald 500
       case 'error':
-        return colors.error;
+        return '#EF4444'; // Red 500
       case 'info':
       default:
-        return colors.primary;
+        return '#3B82F6'; // Blue 500
+    }
+  };
+
+  const getIconName = () => {
+    switch (type) {
+      case 'success':
+        return 'checkmark-circle';
+      case 'error':
+        return 'alert-circle';
+      case 'info':
+      default:
+        return 'information-circle';
     }
   };
 
@@ -89,6 +102,7 @@ export const Toast: React.FC<ToastProps> = ({
         },
       ]}
     >
+      <Ionicons name={getIconName()} size={24} color="#FFFFFF" style={styles.icon} />
       <Text style={styles.message}>{message}</Text>
     </Animated.View>
   );
@@ -120,26 +134,31 @@ export const toast = new ToastManager();
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: 50,
+    bottom: Platform.OS === 'ios' ? 50 : 30,
     left: 20,
     right: 20,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 6,
     zIndex: 9999,
+  },
+  icon: {
+    marginRight: 12,
   },
   message: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '600',
-    textAlign: 'center',
+    flex: 1,
   },
 });
