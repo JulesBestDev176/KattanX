@@ -7,6 +7,7 @@ import {
   Platform,
   SafeAreaView,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Button } from '../components/ui/Button';
@@ -20,8 +21,6 @@ interface AuthScreenProps {
 }
 
 export const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
-  const [loading, setLoading] = useState(false);
-  
   // Login form
   const [loginIdentifier, setLoginIdentifier] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -32,15 +31,15 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
       return;
     }
 
-    setLoading(true);
+    // MODE SIMULATION - Authentification instantanée sans backend
     try {
       console.log('[DEMO] MODE SIMULATION - Connexion agent avec:', loginIdentifier);
       
-      // Créer un agent simulé
+      // Créer un agent simulé instantanément
       const isEmail = loginIdentifier.includes('@');
       const simulatedAgent: Agent = {
         id: `agent-sim-${Date.now()}`,
-        email: isEmail ? loginIdentifier : `${loginIdentifier.replace(/\\s+/g, '')}@temp.agent`,
+        email: isEmail ? loginIdentifier : `${loginIdentifier.replace(/\s+/g, '')}@temp.agent`,
         name: isEmail 
           ? loginIdentifier.split('@')[0].charAt(0).toUpperCase() + loginIdentifier.split('@')[0].slice(1)
           : `Agent ${loginIdentifier}`,
@@ -61,14 +60,12 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
       // Simuler un token d'accès
       const simulatedToken = `agent-token-${Date.now()}`;
 
-      // Connexion simulée réussie
+      // Connexion instantanée
       onLogin(simulatedAgent, simulatedToken);
       toast.success('Connexion agent réussie !');
     } catch (error: any) {
       console.error('Login error:', error);
       toast.error(error.message || 'Erreur lors de la connexion');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -82,7 +79,11 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
         <View style={styles.header}>
           <View style={styles.headerContent}>
             <View style={styles.logoContainer}>
-              <MaterialIcons name="shield" size={36} color={colors.white} />
+              <Image 
+                source={require('../../assets/logo.png')} 
+                style={styles.logoImage}
+                resizeMode="contain"
+              />
             </View>
             <Text style={styles.title}>KattanX</Text>
             <Text style={styles.subtitle}>Portail Agent</Text>
@@ -101,10 +102,10 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
 
             <View style={styles.inputsContainer}>
               <Input
-                label="Email ou Téléphone"
+                label="Identifiant"
                 value={loginIdentifier}
                 onChangeText={setLoginIdentifier}
-                placeholder="votre@email.com ou +221 XX XXX XX XX"
+                placeholder="Votre identifiant"
                 keyboardType="default"
                 autoCapitalize="none"
                 autoComplete="username"
@@ -122,10 +123,8 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
             </View>
 
             <Button
-              title={loading ? 'Connexion...' : 'Se connecter'}
+              title="Se connecter"
               onPress={handleLogin}
-              disabled={loading}
-              loading={loading}
               style={styles.button}
             />
 
@@ -168,13 +167,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoContainer: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  logoImage: {
+    width: '90%',
+    height: '90%',
   },
   title: {
     fontSize: 32,
