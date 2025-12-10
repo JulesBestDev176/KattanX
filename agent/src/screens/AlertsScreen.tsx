@@ -19,9 +19,10 @@ import { Audio } from 'expo-av';
 interface AlertsScreenProps {
   agentPosition?: { latitude: number; longitude: number };
   onBack: () => void;
+  onNavigate: (screen: any) => void;
 }
 
-export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBack }) => {
+export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBack, onNavigate }) => {
   const [alertes, setAlertes] = useState<Alerte[]>([]);
   const [showAlertModal, setShowAlertModal] = useState(false);
   const [currentAlert, setCurrentAlert] = useState<Alerte | null>(null);
@@ -36,6 +37,7 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBac
       const newAlert: Alerte = {
         id: `new-${Date.now()}`,
         type: 'incident',
+        priority: 'critical',
         titre: 'URGENCE : Incendie Déclaré',
         description: 'Incendie majeur signalé au Marché HLM. Toutes les unités à proximité sont requises.',
         localisation: {
@@ -73,6 +75,7 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBac
       {
         id: '1',
         type: 'fugitif',
+        priority: 'critical',
         titre: 'Suspect en fuite - Vol à main armée',
         description: 'Individu armé ayant commis un braquage dans une station-service. Dangereux, ne pas approcher seul.',
         localisation: {
@@ -101,6 +104,7 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBac
       {
         id: '2',
         type: 'vol',
+        priority: 'high',
         titre: 'Vol de véhicule signalé',
         description: 'Véhicule Toyota Corolla blanc volé ce matin. Propriétaire a déposé plainte.',
         localisation: {
@@ -124,6 +128,7 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBac
       {
         id: '3',
         type: 'incident',
+        priority: 'medium',
         titre: 'Accident de la circulation',
         description: 'Accident impliquant 2 véhicules. Besoin de renfort pour gérer la circulation.',
         localisation: {
@@ -153,17 +158,30 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBac
     setAlertes(demoAlertes);
   };
 
+  const [activeTab, setActiveTab] = useState<'all' | 'critical' | 'nearby'>('all');
+
+  const getFilteredAlerts = () => {
+    switch (activeTab) {
+        case 'critical':
+            return alertes.filter(a => a.priority === 'critical' || a.priority === 'high');
+        case 'nearby':
+            return alertes.filter(a => (a.distance || 999) < 2.0); // Less than 2km
+        default:
+            return alertes;
+    }
+  };
+
   const showAlertNotification = async (alert: Alerte) => {
     setCurrentAlert(alert);
     setShowAlertModal(true);
-    
     // Démarrer le son
     try {
-      const { sound } = await Audio.Sound.createAsync(
-        require('../../assets/alert-sound.mp3'),
-        { shouldPlay: true, isLooping: true }
-      );
-      soundRef.current = sound;
+      // Sound disabled for now due to missing asset
+      // const { sound } = await Audio.Sound.createAsync(
+      //   require('../../assets/alert-sound.mp3'),
+      //   { shouldPlay: true, isLooping: true }
+      // );
+      // soundRef.current = sound;
     } catch (error) {
       console.log('Erreur lors du chargement du son:', error);
     }
@@ -226,11 +244,51 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBac
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={onBack} style={styles.backButton}>
-            <Ionicons name="arrow-back" size={24} color={colors.white} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Alertes en Temps Réel</Text>
-          <View style={styles.placeholder} />
+            <TouchableOpacity onPress={onBack} style={styles.backButton}>
+                <Ionicons name="arrow-back" size={24} color={colors.white} />
+            </TouchableOpacity>
+            <Text style={styles.headerTitle}>Alertes BOLO</Text>
+            <View style={styles.placeholder} />
+        </View>
+
+        {/* Voice Notification Banner (Simulated) */}
+        {currentAlert && showAlertModal && (
+            <View style={styles.voiceBanner}>
+                <Ionicons name="volume-high" size={24} color={colors.white} />
+                <View style={{flex: 1, marginHorizontal: 12}}>
+                    <Text style={styles.voiceTitle}>MESSAGE VOCAL EN COURS...</Text>
+                    <Text style={styles.voiceText} numberOfLines={1}>
+                        "Alerte BOLO : {currentAlert.titre}..."
+                    </Text>
+                </View>
+                <View style={styles.equalizer}>
+                    <View style={styles.bar1}/>
+                    <View style={styles.bar2}/>
+                    <View style={styles.bar3}/>
+                </View>
+            </View>
+        )}
+
+        {/* Tabs */}
+        <View style={styles.tabs}>
+            <TouchableOpacity 
+                style={[styles.tab, activeTab === 'all' && styles.activeTab]} 
+                onPress={() => setActiveTab('all')}
+            >
+                <Text style={[styles.tabText, activeTab === 'all' && styles.activeTabText]}>Flux (Tout)</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                style={[styles.tab, activeTab === 'critical' && styles.activeTab]} 
+                onPress={() => setActiveTab('critical')}
+            >
+                <Text style={[styles.tabText, activeTab === 'critical' && styles.activeTabText]}>Prioritaire</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                style={[styles.tab, activeTab === 'nearby' && styles.activeTab]} 
+                onPress={() => setActiveTab('nearby')}
+            >
+                <Text style={[styles.tabText, activeTab === 'nearby' && styles.activeTabText]}>Proche (2km)</Text>
+            </TouchableOpacity>
         </View>
 
         {/* Agent Position Banner */}
@@ -249,25 +307,14 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBac
             </View>
             <View style={styles.liveIndicator}>
               <View style={styles.liveDot} />
-              <Text style={styles.liveText}>EN DIRECT</Text>
+              <Text style={styles.liveText}>LIVE</Text>
             </View>
           </View>
         )}
 
         <ScrollView contentContainerStyle={styles.content}>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Flux d'alertes</Text>
-          </View>
-
-          {alertes.map((alerte) => (
-            <AlertCard
-              key={alerte.id}
-              alerte={alerte}
-              onPress={() => {
-                setCurrentAlert(alerte);
-                setShowAlertModal(true);
-              }}
-            />
+          {getFilteredAlerts().map((alerte) => (
+             <AlertCard key={alerte.id} alerte={alerte} onPress={() => { setCurrentAlert(alerte); setShowAlertModal(true); }} />
           ))}
 
           {alertes.length === 0 && (
@@ -277,6 +324,20 @@ export const AlertsScreen: React.FC<AlertsScreenProps> = ({ agentPosition, onBac
             </View>
           )}
         </ScrollView>
+
+        <TouchableOpacity
+            style={styles.fab}
+            onPress={() => {
+                console.log('Navigating to createBolo, onNavigate exists:', !!onNavigate);
+                if (onNavigate) {
+                    onNavigate('createBolo');
+                } else {
+                    console.error('onNavigate prop is missing!');
+                }
+            }}
+        >
+            <Ionicons name="add" size={32} color={colors.white} />
+        </TouchableOpacity>
 
         {/* Alert Modal */}
         <Modal
@@ -542,4 +603,73 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+  fab: {
+    position: 'absolute',
+    bottom: 24,
+    right: 24,
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: colors.destructive,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  tabs: {
+    flexDirection: 'row',
+    padding: 12,
+    gap: 12,
+  },
+  tab: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  activeTab: {
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
+  },
+  tabText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: colors.mutedForeground,
+  },
+  activeTabText: {
+    color: colors.white,
+  },
+  voiceBanner: {
+    backgroundColor: colors.destructive,
+    padding: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  voiceTitle: {
+    color: 'rgba(255,255,255,0.8)',
+    fontSize: 10,
+    fontWeight: '700',
+    marginBottom: 2,
+  },
+  voiceText: {
+    color: colors.white,
+    fontSize: 14,
+    fontWeight: '600',
+    fontStyle: 'italic',
+  },
+  equalizer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    height: 16,
+    gap: 2,
+  },
+  bar1: { width: 4, height: '60%', backgroundColor: 'white' },
+  bar2: { width: 4, height: '100%', backgroundColor: 'white' },
+  bar3: { width: 4, height: '80%', backgroundColor: 'white' },
 });

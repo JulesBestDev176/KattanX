@@ -11,8 +11,8 @@ import { VerificationMethod } from '../types';
 import { colors } from '../theme/colors';
 
 interface VerificationMethodSelectorProps {
-  selectedMethod: 'cni' | 'matricule' | 'photo';
-  onSelectMethod: (method: 'cni' | 'matricule' | 'photo') => void;
+  selectedMethod: 'cni' | 'matricule' | 'photo' | 'permis';
+  onSelectMethod: (method: 'cni' | 'matricule' | 'photo' | 'permis') => void;
 }
 
 export const VerificationMethodSelector: React.FC<VerificationMethodSelectorProps> = ({
@@ -38,16 +38,18 @@ export const VerificationMethodSelector: React.FC<VerificationMethodSelectorProp
       icon: 'camera-outline',
       description: 'Reconnaissance faciale IA',
     },
+    {
+      type: 'permis',
+      label: 'Par Permis',
+      icon: 'card-outline',
+      description: 'Saisir le numéro de permis',
+    },
   ];
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Méthode de vérification</Text>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.methodsContainer}
-      >
+      <View style={styles.methodsGrid}>
         {methods.map((method) => (
           <TouchableOpacity
             key={method.type}
@@ -88,7 +90,7 @@ export const VerificationMethodSelector: React.FC<VerificationMethodSelectorProp
             </Text>
           </TouchableOpacity>
         ))}
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -102,14 +104,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.foreground,
     marginBottom: 12,
-    paddingHorizontal: 20,
   },
-  methodsContainer: {
-    paddingHorizontal: 20,
+  methodsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 12,
   },
   methodCard: {
-    width: 140,
+    width: '48%', // 2 items per row with gap
     backgroundColor: colors.white,
     borderRadius: 12,
     padding: 16,

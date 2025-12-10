@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KattanX - Tableau de Bord (Mode Sombre)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-gradient {
+            background: linear-gradient(180deg, #101822 0%, #0c1218 100%);
+        }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0b68da",
+              "background-light": "#f5f7f8",
+              "background-dark": "#1a1a1a",
+              "dark-bic-blue": "#101822",
+              "medium-blue": "#0b68da",
+              "light-blue": "#e7edf4",
+              "off-white": "#f5f7f8",
+              "light-gray": "#cedae8",
+              "accent-green": "#07883b",
+              "accent-yellow": "#f59e0b",
+              "accent-red": "#e73908",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-dark">
+<div class="flex h-screen w-full">
+<aside class="flex h-full w-[260px] flex-col justify-between sidebar-gradient text-white fixed">
+<div class="flex flex-col gap-8 p-4">
+<div class="flex items-center gap-3 px-2 pt-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-10 flex items-center justify-center bg-primary" data-alt="KattanX Logo">
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6208 15.75L15.8208 12.55C16.2108 12.16 16.2108 11.53 15.8208 11.14L12.6208 7.94001C12.2308 7.55001 11.6008 7.55001 11.2108 7.94001L8.01078 11.14C7.62078 11.53 7.62078 12.16 8.01078 12.55L11.2108 15.75C11.6008 16.14 12.2308 16.14 12.6208 15.75Z" fill="white"></path>
+<path d="M12.0001 2C6.48008 2 2.00008 6.48 2.00008 12C2.00008 17.52 6.48008 22 12.0001 22C17.5201 22 22.0001 17.52 22.0001 12C22.0001 6.48 17.5201 2 12.0001 2ZM17.9401 14.59L14.7401 17.79C13.9601 18.57 12.7101 19 11.4101 19C10.1101 19 8.86008 18.57 8.08008 17.79L4.88008 14.59C4.10008 13.81 3.67008 12.93 3.67008 12C3.67008 11.07 4.10008 10.19 4.88008 9.40999L8.08008 6.20999C9.64008 4.64999 12.1401 4.29999 14.0701 5.48999L17.4301 7.42999C18.2301 7.88999 18.8601 8.58999 19.2601 9.43999C20.4601 11.37 20.1101 13.87 18.5501 15.43L17.9401 14.59Z" fill="white"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">KattanX</h1>
+<p class="text-gray-400 text-sm font-normal leading-normal">Security Control Portal</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/30" href="#">
+<span class="material-symbols-outlined fill text-white">dashboard</span>
+<p class="text-white text-sm font-medium leading-normal">Tableau de Bord</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-gray-300">videocam</span>
+<p class="text-gray-300 text-sm font-medium leading-normal">Surveillance</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-gray-300">notifications_active</span>
+<p class="text-gray-300 text-sm font-medium leading-normal">Alertes</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-gray-300">groups</span>
+<p class="text-gray-300 text-sm font-medium leading-normal">Agents</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-gray-300">security</span>
+<p class="text-gray-300 text-sm font-medium leading-normal">Brigades</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-gray-300">assessment</span>
+<p class="text-gray-300 text-sm font-medium leading-normal">Rapports</p>
+</a>
+</nav>
+</div>
+<div class="flex items-center gap-3 p-4 border-t border-white/10">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBZwplD3mKWBmwuU_UlJXSKwDklfEHq9jtdIylrTguzDabG51K7IbJSCe1o6d2NMTHXK9crDaGLsqnDfUoJDZKcaQebRmHlhF5JjWa1abrTr0whkzErsKTO_v0sIOe42zYNishShuek1EJCmO2Zfc7fyCxJ34yUYVYqoSn4uVuaNpWu3VU-iNEwNNfInmd-M_J6mAqpuSK19zsLyk5IRAqaFue20ZXwEK99TVx7YeuBMdlvIzhuD3mN3B369XT8M_BxZjgjESgRwVs");'></div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-medium leading-normal">Admin User</p>
+<p class="text-gray-400 text-xs font-normal leading-normal">admin@kattanx.sn</p>
+</div>
+</div>
+</aside>
+<div class="flex-1 ml-[260px] flex flex-col h-screen">
+<header class="flex h-[64px] items-center justify-between whitespace-nowrap border-b bg-dark-bic-blue border-white/10 px-6 py-3">
+<div class="flex flex-wrap items-center gap-2">
+<a class="text-gray-400 text-sm font-medium leading-normal hover:text-primary" href="#">KattanX</a>
+<span class="text-gray-500 text-sm font-medium leading-normal">/</span>
+<span class="text-white text-sm font-medium leading-normal">Tableau de Bord</span>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative flex flex-col w-[320px] h-10">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-gray-700 bg-gray-800 h-full placeholder:text-gray-500 pl-10 pr-4 text-sm font-normal leading-normal" placeholder="Rechercher..." value=""/>
+</label>
+<div class="flex items-center justify-end gap-4">
+<button class="relative flex items-center justify-center p-2 rounded-full h-10 w-10 bg-gray-800 text-white hover:bg-gray-700">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-red"></span>
+</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIzxn5Yqs0R8REkYA6LTH-RZgS8kwYSjXOqYlqOPv5bYYj86NBm7We_hLe2lV61lv5yke81jAzZ3rP0DIknOGmLTOIFBdzTIxXOV3Jr-zKngdmWeGffyV3xBnZoVTRBYmA29Q2e8995ZuyG9tA9z-DZaHJPzH_5Hxr3JA13H6lUQs3EbQmZp8EIpuJfNQUhnQnRN2G4Fmwbq67RGDQFEzTzGql7d6pf0wCQqmAKQiA9qXMB9OzVZ-NkLFV0do_YaV3WsB1G6haZRI");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-6 bg-background-dark">
+<div class="flex gap-6">
+<div class="flex flex-col flex-1 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="flex flex-col gap-2 rounded-lg p-4 bg-dark-bic-blue border-t-4 border-accent-red">
+<div class="flex justify-between items-center">
+<p class="text-gray-400 text-sm font-medium leading-normal">Alertes Actives</p>
+<span class="material-symbols-outlined text-accent-red">error</span>
+</div>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">12</p>
+<p class="text-accent-green text-sm font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-base">arrow_upward</span>+5.2%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-4 bg-dark-bic-blue border-t-4 border-medium-blue">
+<div class="flex justify-between items-center">
+<p class="text-gray-400 text-sm font-medium leading-normal">Agents en Service</p>
+<span class="material-symbols-outlined text-medium-blue">person</span>
+</div>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">156</p>
+<p class="text-accent-red text-sm font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-base">arrow_downward</span>-1.0%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-4 bg-dark-bic-blue border-t-4 border-accent-yellow">
+<div class="flex justify-between items-center">
+<p class="text-gray-400 text-sm font-medium leading-normal">Caméras en Ligne</p>
+<span class="material-symbols-outlined text-accent-yellow">videocam</span>
+</div>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">489</p>
+<p class="text-accent-green text-sm font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-base">arrow_upward</span>+2%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-4 bg-dark-bic-blue border-t-4 border-accent-green">
+<div class="flex justify-between items-center">
+<p class="text-gray-400 text-sm font-medium leading-normal">Détections IA</p>
+<span class="material-symbols-outlined text-accent-green">smart_toy</span>
+</div>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">78</p>
+<p class="text-accent-green text-sm font-medium leading-normal flex items-center gap-1"><span class="material-symbols-outlined text-base">arrow_upward</span>+8.5%</p>
+</div>
+</div>
+<div class="h-[480px] w-full rounded-xl overflow-hidden">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover" data-alt="Interactive map of Dakar showing locations of alerts, agents, and cameras." data-location="Dakar, Senegal" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDBJ70hu_q5AHAOnV9XohLRVGeEC0MpFJ_UZLEJlunELfRZyiizk7dCoQmiFBPODSGyqDVclLBkyyWzagHikY5VTXO_PJ1lLQao9q8NwD-RmlMSryeXoZwYDvqPzcLC0tMplDJgnaqAJy7rKUQ7Dpgz2wCIN1nMi_djR9iAxM_Emtb7eM75IfO9NrgFLf7OI1nWnT7dqNobu16L5NArmM1YQaGWFBzVoqOArAbrtPplG_w2NGE1Df9hIp4adAF2snk6Xc0oi9XsaW8");'></div>
+</div>
+</div>
+<div class="w-[320px] flex-shrink-0 flex flex-col gap-4 bg-dark-bic-blue p-4 rounded-lg">
+<h3 class="text-lg font-semibold text-white">Alertes Récentes</h3>
+<div class="flex flex-col gap-4 overflow-y-auto">
+<div class="flex items-start gap-3 p-3 rounded-lg bg-red-900/20">
+<div class="p-2 bg-red-900/30 rounded-full"><span class="material-symbols-outlined text-accent-red">directions_run</span></div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<p class="text-sm font-semibold text-white">Vol à l'arraché</p>
+<span class="text-xs text-gray-400">Il y a 2 min</span>
+</div>
+<p class="text-xs text-gray-300">Médina</p>
+<div class="flex justify-between items-center mt-2">
+<span class="inline-block px-2 py-0.5 text-xs font-medium text-red-100 bg-red-800 rounded-full">Haute</span>
+<a class="text-xs font-semibold text-primary hover:underline" href="#">Voir détails</a>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-yellow-900/20">
+<div class="p-2 bg-yellow-900/30 rounded-full"><span class="material-symbols-outlined text-accent-yellow">groups</span></div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<p class="text-sm font-semibold text-white">Rassemblement Suspect</p>
+<span class="text-xs text-gray-400">Il y a 15 min</span>
+</div>
+<p class="text-xs text-gray-300">Parcelles Assainies</p>
+<div class="flex justify-between items-center mt-2">
+<span class="inline-block px-2 py-0.5 text-xs font-medium text-yellow-100 bg-yellow-800 rounded-full">Moyenne</span>
+<a class="text-xs font-semibold text-primary hover:underline" href="#">Voir détails</a>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-blue-900/20">
+<div class="p-2 bg-blue-900/30 rounded-full"><span class="material-symbols-outlined text-primary">traffic</span></div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<p class="text-sm font-semibold text-white">Accident de la route</p>
+<span class="text-xs text-gray-400">Il y a 32 min</span>
+</div>
+<p class="text-xs text-gray-300">Plateau</p>
+<div class="flex justify-between items-center mt-2">
+<span class="inline-block px-2 py-0.5 text-xs font-medium text-red-100 bg-red-800 rounded-full">Haute</span>
+<a class="text-xs font-semibold text-primary hover:underline" href="#">Voir détails</a>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800">
+<div class="p-2 bg-gray-700 rounded-full"><span class="material-symbols-outlined text-gray-400">local_fire_department</span></div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<p class="text-sm font-semibold text-white">Départ de feu</p>
+<span class="text-xs text-gray-400">Il y a 48 min</span>
+</div>
+<p class="text-xs text-gray-300">Yoff</p>
+<div class="flex justify-between items-center mt-2">
+<span class="inline-block px-2 py-0.5 text-xs font-medium text-gray-100 bg-gray-600 rounded-full">Basse</span>
+<a class="text-xs font-semibold text-primary hover:underline" href="#">Voir détails</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

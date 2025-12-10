@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KattanX - Brigades (Mode Sombre)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0b68da",
+            "background-light": "#f5f7f8",
+            "background-dark": "#101822",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+    .material-symbols-outlined.fill {
+        font-variation-settings: 'FILL' 1;
+    }
+  </style>
+</head>
+<body class="bg-background-dark font-display text-gray-200">
+<div class="flex h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex h-full w-64 flex-shrink-0 flex-col bg-[#101923] p-4 border-r border-white/10">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 px-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="KattanX company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgTSKv6nRQfuj0xST_Y5IYYFXabyxeOSNU2rZupBrAzSlo4dEjf0KFdFzn7TNyqvrwaojhmcenVqpow6Z9Nr_9VeUydvsPRAWqEYxtbeiXlg2vACcA_iId_SEe9zFzJA0Gaq-rOdxasyg0nsx1hdXVE6_EX8gvTcHR7xn21HRND5hq0FWl5OhWvdHwy46yKwR4j1akFQc5zTMufVUqJu2kAmmTljcN3yqGf9dDNYfWYCid1BKMdeSe0BZ4zHjDUB7in2prX_fy120");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">KattanX</h1>
+<p class="text-gray-400 text-sm font-normal leading-normal">Security Control Portal</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-primary/20 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Tableau de Bord</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-white" href="#">
+<span class="material-symbols-outlined fill">security</span>
+<p class="text-sm font-medium leading-normal">Brigades</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-primary/20 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium leading-normal">Agents</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-primary/20 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<p class="text-sm font-medium leading-normal">Zones</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-primary/20 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<p class="text-sm font-medium leading-normal">Rapports</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-primary/20 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<p class="text-sm font-medium leading-normal">Profil</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-primary/20 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium leading-normal">Déconnexion</p>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col p-6 overflow-y-auto">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-center gap-3">
+<h1 class="text-white text-3xl font-bold leading-tight">Gestion des Brigades</h1>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">add</span>
+<span class="truncate">Créer une Brigade</span>
+</button>
+</div>
+<!-- Toolbar & Chips -->
+<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mt-6 border-b border-white/10 pb-4">
+<div class="flex gap-2">
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-[#182534] border border-transparent rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Rechercher une brigade..." type="text"/>
+</div>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#182534] px-4">
+<p class="text-white text-sm font-medium leading-normal">Zone Opérationnelle</p>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#182534] px-4">
+<p class="text-white text-sm font-medium leading-normal">Statut</p>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#182534] px-4">
+<p class="text-white text-sm font-medium leading-normal">Taille</p>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-white/70 bg-primary/20 rounded-lg"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="p-2 text-white/50 hover:text-white hover:bg-white/10 rounded-lg"><span class="material-symbols-outlined">view_list</span></button>
+</div>
+</div>
+<!-- Brigade List/Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 mt-6">
+<!-- Selected Card -->
+<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#182534] border-2 border-primary cursor-pointer transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white font-semibold">Brigade Alpha</h3>
+<p class="text-sm text-gray-400">Zone Dakar-Plateau</p>
+</div>
+<div class="flex items-center gap-2 text-sm">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+</span>
+<span class="text-green-400">Actif</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-sm text-gray-300 pt-4 border-t border-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">groups</span>
+<span>12 Agents</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">wb_sunny</span>
+<span>Jour (06:00 - 18:00)</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#182534] border border-transparent hover:border-primary/50 cursor-pointer transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white font-semibold">Brigade Bravo</h3>
+<p class="text-sm text-gray-400">Zone Médina</p>
+</div>
+<div class="flex items-center gap-2 text-sm">
+<span class="relative flex h-2.5 w-2.5"><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span></span>
+<span class="text-green-400">Actif</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-sm text-gray-300 pt-4 border-t border-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">groups</span>
+<span>8 Agents</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">dark_mode</span>
+<span>Nuit (18:00 - 06:00)</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#182534] border border-transparent hover:border-primary/50 cursor-pointer transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white font-semibold">Brigade Charlie</h3>
+<p class="text-sm text-gray-400">Zone Yoff</p>
+</div>
+<div class="flex items-center gap-2 text-sm">
+<span class="relative flex h-2.5 w-2.5"><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span></span>
+<span class="text-red-400">Inactif</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-sm text-gray-300 pt-4 border-t border-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">groups</span>
+<span>15 Agents</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>N/A</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col gap-4 rounded-xl p-4 bg-[#182534] border border-transparent hover:border-primary/50 cursor-pointer transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white font-semibold">Brigade Delta</h3>
+<p class="text-sm text-gray-400">Zone Grand Dakar</p>
+</div>
+<div class="flex items-center gap-2 text-sm">
+<span class="relative flex h-2.5 w-2.5"><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span></span>
+<span class="text-green-400">Actif</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-sm text-gray-300 pt-4 border-t border-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">groups</span>
+<span>10 Agents</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">wb_sunny</span>
+<span>Jour (06:00 - 18:00)</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Details Panel -->
+<aside class="flex h-full w-[480px] flex-shrink-0 flex-col bg-[#101923] border-l border-white/10">
+<div class="flex items-center justify-between p-4 border-b border-white/10">
+<div>
+<h2 class="text-xl font-bold text-white">Détails de la Brigade Alpha</h2>
+<div class="flex items-center gap-2 text-sm mt-1">
+<span class="relative flex h-2.5 w-2.5"><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span></span>
+<span class="text-green-400 font-medium">Actif</span>
+</div>
+</div>
+<button class="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex border-b border-white/10 px-4">
+<button class="flex-1 py-3 text-sm font-semibold text-primary border-b-2 border-primary">Agents (12)</button>
+<button class="flex-1 py-3 text-sm font-medium text-gray-400 hover:text-white">Carte</button>
+<button class="flex-1 py-3 text-sm font-medium text-gray-400 hover:text-white">Activité Récente</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Agent List -->
+<div class="flex items-center justify-between p-3 bg-[#182534] rounded-lg">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full" data-alt="Avatar de l'agent" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9AHEO8Z5voJQ5HDy6f24EuBgJZe8DdSC6Jer-XXxRo7J3Qz5hEJ-Q19wCPtTWw9dz7J9_ZlWfrreJh85-H_O8O8E3Bqd-Y9w--KSF5-kdkWlz-dqPE_J-3ihZBlKYLU6yriyEmzcebErz7a6IoQ9xush0R_XmUh8X0LpNHDQmVqc5R16a8YyiE1_Dh6l_dKraO8Tlefwmo-r-rUQI1u3opnc--42Jo9Q_n1twk4SJSA9GAN_iEyIfE8yMga8Wr6YGnUF_cquheUI"/>
+<div>
+<p class="font-medium text-white">Moussa Diop</p>
+<p class="text-xs text-gray-400">ID: AG-1023</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs px-2 py-1 rounded-full bg-green-500/20 text-green-400">
+<span class="h-2 w-2 rounded-full bg-green-500"></span>
+                En service
+            </div>
+</div>
+<div class="flex items-center justify-between p-3 bg-[#182534] rounded-lg">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full" data-alt="Avatar de l'agent" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC87kwzZ2B200CXGxZl89UcXyBRxFiHj9Sf1YaN-i4IOVnsuF63cSInHzNWvR30fRCPZXzbXB0vqbh5Tu_AzxcUmWCdHS_GOVwTMWPAVG84pzL5lIg0A7dgmgHqZ6R4rK2lTZ0xbvJxo5vZIlnGY-3ZqVgSgFuCfxLa6-2YQ_L_rXZ4ciaVDY9W2H-uJwEtqLy2QqR7n89sJdl7BIRl_R0xGwIG7-JZ43MxymPBf-4ZltsBhAdV5VMnRuSX3wHS916V3crhwpbposA"/>
+<div>
+<p class="font-medium text-white">Fatou Ndiaye</p>
+<p class="text-xs text-gray-400">ID: AG-1024</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-400">
+<span class="h-2 w-2 rounded-full bg-yellow-500"></span>
+                En pause
+            </div>
+</div>
+<div class="flex items-center justify-between p-3 bg-[#182534] rounded-lg">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full" data-alt="Avatar de l'agent" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqUO5aFLUOFUhaN-djcRDesfnL9JWxUQ1d7dUrOiuE42auxVl2hM2pzWhd1mWkoNhmkmGCIinwLfc83LLbi6zQcZDIvm9OZrqutXd3sRV4nR14dH54zXcmzJRLxT6QNtnZZ_L7XqKIiqPNo0guufpUajJBho3H4NTd13QBYqMh_4KSl_VeR91W5oD_dq3giPdkAQ6Mj_U6Cqyxbmh6CWKGds_em81RKnYG8yE0YZ1jK2v51AvOp0nHkCBpXKUvvmI1v32xHHeFSBA"/>
+<div>
+<p class="font-medium text-white">Ibrahim Fall</p>
+<p class="text-xs text-gray-400">ID: AG-1025</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs px-2 py-1 rounded-full bg-red-500/20 text-red-400">
+<span class="h-2 w-2 rounded-full bg-red-500"></span>
+                Hors service
+            </div>
+</div>
+<div class="flex items-center justify-between p-3 bg-[#182534] rounded-lg">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full" data-alt="Avatar de l'agent" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp6gkLNcMoT6CodhL2xSCS39dTCr6_EsA4xyqPsDiqQ69NHvkMd9mx5DmwyOQyHmF-frlNa3UlxEjIrbsvPt9HggZpIiYtNYWJTscEQe041bBhOKihPjm4szayutvbFnAwpLu3hW_dEZKfHr0y-UW3qfhINM4mimcAi7N5NKKdLGw_AeDagn_oOTaNdD4ElAGGwpNQLfDt6LNa4gqujikPhX-pJEgsp4j-MccKZDBEjZFfo_UtvDT2fPySRcldedpZBs5c8IqqqvM"/>
+<div>
+<p class="font-medium text-white">Awa Gueye</p>
+<p class="text-xs text-gray-400">ID: AG-1026</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs px-2 py-1 rounded-full bg-green-500/20 text-green-400">
+<span class="h-2 w-2 rounded-full bg-green-500"></span>
+                En service
+            </div>
+</div>
+</div>
+</div>
+<div class="p-4 mt-auto border-t border-white/10 space-y-3">
+<button class="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary/20 text-primary text-sm font-bold hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined">group_add</span>
+            Gérer les Membres
+        </button>
+<button class="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary/20 text-primary text-sm font-bold hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined">add_location_alt</span>
+            Assigner une Zone
+        </button>
+<button class="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary/20 text-primary text-sm font-bold hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+            Voir les Rapports
+        </button>
+</div>
+</aside>
+</div>
+</body></html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KattanX - Agents (Mode Sombre)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0b68da",
+              "background-light": "#f5f7f8",
+              "background-dark": "#101822",
+              "surface-dark": "#182534",
+              "border-dark": "#314a68",
+              "text-muted-dark": "#90aacb",
+              "status-green": "#28a745",
+              "status-orange": "#ffc107",
+              "status-gray": "#6c757d",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-white">
+<div class="flex h-screen w-full flex-row">
+<!-- SideNavBar -->
+<aside class="flex h-full w-64 flex-col bg-[#101923] p-4 border-r border-border-dark">
+<div class="flex flex-col justify-between h-full">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="KattanX company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCAjxLzKZSpNBsYibj6K4uydXOITpuSiCllxClQxI3SgjM0xx6SYanjlIlNZLIkMQhKoFmAN-j0MhALe5E-2b2Sw-s7pPK4sIYHVZ5zGRoSD2jwGYXvZzBrDz6gLYQmVZ_2Zs9A3DuPyIEe0hMeT4XRAZyWjPMqgDIqfBA3hMrZzDaPxKzxNWm5YcUmwUHW0TOBXWyyXaK_0My6-njwzLiYnTkXgcZbfiRF86DEelvb8sT9d08K6QAUvymOGaS-1MlwUhVrwNHb2VE");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">KattanX</h1>
+<p class="text-text-muted-dark text-sm font-normal leading-normal">Portail de Sécurité</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-white">dashboard</span>
+<p class="text-white text-sm font-medium leading-normal">Tableau de bord</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary" href="#">
+<span class="material-symbols-outlined fill text-white">groups</span>
+<p class="text-white text-sm font-medium leading-normal">Agents</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-white">warning</span>
+<p class="text-white text-sm font-medium leading-normal">Incidents</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-white">assessment</span>
+<p class="text-white text-sm font-medium leading-normal">Rapports</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-white">settings</span>
+<p class="text-white text-sm font-medium leading-normal">Paramètres</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-white">help</span>
+<p class="text-white text-sm font-medium leading-normal">Aide</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-white">logout</span>
+<p class="text-white text-sm font-medium leading-normal">Déconnexion</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex flex-1 flex-col overflow-y-auto">
+<div class="p-6">
+<!-- PageHeading -->
+<header class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-white text-3xl font-bold leading-tight">Agents</h1>
+<p class="text-text-muted-dark text-base font-normal leading-normal">Gérer et suivre tous les agents de sécurité.</p>
+</div>
+<button class="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">add</span>
+<span class="truncate">Ajouter un Agent</span>
+</button>
+</header>
+<!-- Search and Filters -->
+<div class="mt-6 flex flex-wrap items-center gap-4">
+<!-- SearchBar -->
+<div class="flex-grow min-w-[300px]">
+<label class="flex flex-col h-11 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-muted-dark flex bg-surface-dark items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary border-none bg-surface-dark h-full placeholder:text-text-muted-dark px-4 text-sm font-normal leading-normal" placeholder="Rechercher par nom ou ID..." value=""/>
+</div>
+</label>
+</div>
+<!-- Chips/Filters -->
+<div class="flex items-center gap-3">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-surface-dark pl-4 pr-3 hover:bg-border-dark transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Filtrer par Statut</p>
+<span class="material-symbols-outlined text-white text-lg">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-surface-dark pl-4 pr-3 hover:bg-border-dark transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Filtrer par Brigade</p>
+<span class="material-symbols-outlined text-white text-lg">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-surface-dark pl-4 pr-3 hover:bg-border-dark transition-colors">
+<p class="text-white text-sm font-medium leading-normal">Disponibilité</p>
+<span class="material-symbols-outlined text-white text-lg">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="mt-6">
+<div class="flex overflow-hidden rounded-xl border border-border-dark bg-[#101923]">
+<table class="w-full">
+<thead>
+<tr class="bg-surface-dark">
+<th class="px-4 py-3 text-left text-white text-xs font-medium uppercase tracking-wider">Nom de l'Agent</th>
+<th class="px-4 py-3 text-left text-white text-xs font-medium uppercase tracking-wider">ID</th>
+<th class="px-4 py-3 text-left text-white text-xs font-medium uppercase tracking-wider">Statut</th>
+<th class="px-4 py-3 text-left text-white text-xs font-medium uppercase tracking-wider">Localisation Actuelle</th>
+<th class="px-4 py-3 text-left text-white text-xs font-medium uppercase tracking-wider">Contact</th>
+<th class="px-4 py-3 text-left text-white text-xs font-medium uppercase tracking-wider">Brigade</th>
+<th class="px-4 py-3 text-left text-white text-xs font-medium uppercase tracking-wider">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-t border-t-border-dark hover:bg-surface-dark/50 cursor-pointer">
+<td class="h-[64px] px-4 py-2 text-white text-sm font-normal leading-normal">Mamadou Diallo</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">K-7251</td>
+<td class="h-[64px] px-4 py-2 text-sm font-normal leading-normal">
+<div class="flex items-center gap-2 py-1 px-3 rounded-full bg-status-green/10 w-fit">
+<div class="size-2 rounded-full bg-status-green"></div>
+<span class="text-status-green text-xs font-medium">En Service</span>
+</div>
+</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Dakar, Point E</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">77 123 45 67</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Brigade Alpha</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-lg font-bold">...</td>
+</tr>
+<tr class="border-t border-t-border-dark bg-primary/10 cursor-pointer">
+<td class="h-[64px] px-4 py-2 text-white text-sm font-normal leading-normal">Aïssatou Faye</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">K-6890</td>
+<td class="h-[64px] px-4 py-2 text-sm font-normal leading-normal">
+<div class="flex items-center gap-2 py-1 px-3 rounded-full bg-status-gray/10 w-fit">
+<div class="size-2 rounded-full bg-status-gray"></div>
+<span class="text-status-gray text-xs font-medium">En Repos</span>
+</div>
+</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Thiès, Centre-ville</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">78 234 56 78</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Brigade Bravo</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-lg font-bold">...</td>
+</tr>
+<tr class="border-t border-t-border-dark hover:bg-surface-dark/50 cursor-pointer">
+<td class="h-[64px] px-4 py-2 text-white text-sm font-normal leading-normal">Ibrahima Sow</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">K-7334</td>
+<td class="h-[64px] px-4 py-2 text-sm font-normal leading-normal">
+<div class="flex items-center gap-2 py-1 px-3 rounded-full bg-status-orange/10 w-fit">
+<div class="size-2 rounded-full bg-status-orange"></div>
+<span class="text-status-orange text-xs font-medium">En Intervention</span>
+</div>
+</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Mbour, Saly</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">76 345 67 89</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Brigade Charlie</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-lg font-bold">...</td>
+</tr>
+<tr class="border-t border-t-border-dark hover:bg-surface-dark/50 cursor-pointer">
+<td class="h-[64px] px-4 py-2 text-white text-sm font-normal leading-normal">Fatou N'diaye</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">K-8102</td>
+<td class="h-[64px] px-4 py-2 text-sm font-normal leading-normal">
+<div class="flex items-center gap-2 py-1 px-3 rounded-full bg-status-green/10 w-fit">
+<div class="size-2 rounded-full bg-status-green"></div>
+<span class="text-status-green text-xs font-medium">En Service</span>
+</div>
+</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Saint-Louis, Île</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">77 456 78 90</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Brigade Alpha</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-lg font-bold">...</td>
+</tr>
+<tr class="border-t border-t-border-dark hover:bg-surface-dark/50 cursor-pointer">
+<td class="h-[64px] px-4 py-2 text-white text-sm font-normal leading-normal">Cheikh Anta Diop</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">K-5521</td>
+<td class="h-[64px] px-4 py-2 text-sm font-normal leading-normal">
+<div class="flex items-center gap-2 py-1 px-3 rounded-full bg-status-gray/10 w-fit">
+<div class="size-2 rounded-full bg-status-gray"></div>
+<span class="text-status-gray text-xs font-medium">En Repos</span>
+</div>
+</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Dakar, Médina</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">70 567 89 01</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-sm font-normal leading-normal">Brigade Bravo</td>
+<td class="h-[64px] px-4 py-2 text-text-muted-dark text-lg font-bold">...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Agent Detail Panel -->
+<aside class="flex h-full w-[400px] flex-col bg-surface-dark border-l border-border-dark p-6">
+<div class="flex flex-col items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-24 border-4 border-primary" data-alt="Profile picture of agent Aïssatou Faye" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCIOT5jMZps8gVNI7i_jQK-cfEvgZ9oLwhciJdGe1ClwY6v9SGxCnCiHsA6P4LQvm5E8c8l6yMq8TlfF-k319-IzLTVFaSw61yyQLlUWCadZM2x2YO-QgBybZQ9P7FaePX0yZe7Hvwy4urt5CTuLtfTsZ1FZNygihP0TsY7g2DVClKiwJDJ9KmnOljWDpOvR484g3LdKs8DtarZIz0yX0aJxaPXAQSZIeTO770gn5nALSrGoODlzwGvQqsM_lcw2ROD3KOf44LnS6w");'></div>
+<div class="absolute bottom-1 right-1 size-5 rounded-full bg-status-gray border-2 border-surface-dark"></div>
+</div>
+<h2 class="text-xl font-bold mt-4">Aïssatou Faye</h2>
+<p class="text-sm text-text-muted-dark">ID: K-6890</p>
+</div>
+<div class="mt-8 flex flex-col gap-4">
+<button class="flex w-full items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">call</span> Contacter
+                </button>
+<button class="flex w-full items-center justify-center gap-2 rounded-lg h-10 px-4 bg-border-dark text-white text-sm font-bold hover:bg-border-dark/80 transition-colors">
+<span class="material-symbols-outlined">assignment</span> Assigner une Tâche
+                </button>
+</div>
+<div class="mt-8 border-t border-border-dark pt-6">
+<h3 class="text-lg font-semibold text-white">Informations Détaillées</h3>
+<div class="mt-4 space-y-3 text-sm">
+<div class="flex justify-between">
+<span class="text-text-muted-dark">Brigade:</span>
+<span class="font-medium">Brigade Bravo</span>
+</div>
+<div class="flex justify-between">
+<span class="text-text-muted-dark">Téléphone:</span>
+<span class="font-medium">78 234 56 78</span>
+</div>
+<div class="flex justify-between">
+<span class="text-text-muted-dark">Email:</span>
+<span class="font-medium">a.faye@kattanx.sn</span>
+</div>
+<div class="flex justify-between">
+<span class="text-text-muted-dark">Date d'embauche:</span>
+<span class="font-medium">15/03/2021</span>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-border-dark pt-6">
+<h3 class="text-lg font-semibold text-white">Activité Récente</h3>
+<ul class="mt-4 space-y-4 text-sm">
+<li class="flex items-start gap-3">
+<div class="bg-primary/20 p-2 rounded-full mt-1">
+<span class="material-symbols-outlined text-primary text-base">login</span>
+</div>
+<div>
+<p class="font-medium">Prise de service</p>
+<p class="text-text-muted-dark text-xs">Aujourd'hui à 08:00 - Site B</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="bg-status-orange/10 p-2 rounded-full mt-1">
+<span class="material-symbols-outlined text-status-orange text-base">report</span>
+</div>
+<div>
+<p class="font-medium">Incident signalé</p>
+<p class="text-text-muted-dark text-xs">Hier à 22:15 - Intrusion suspecte</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="bg-status-green/10 p-2 rounded-full mt-1">
+<span class="material-symbols-outlined text-status-green text-base">task_alt</span>
+</div>
+<div>
+<p class="font-medium">Ronde effectuée</p>
+<p class="text-text-muted-dark text-xs">Hier à 21:00 - Zone 4</p>
+</div>
+</li>
+</ul>
+</div>
+</aside>
+</div>
+</body></html>

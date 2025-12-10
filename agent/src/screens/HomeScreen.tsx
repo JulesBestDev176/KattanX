@@ -116,6 +116,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       description: 'Vérifier un individu',
     },
     {
+      id: 'missions',
+      icon: 'list', // or 'clipboard'
+      label: 'Missions',
+      color: '#8b5cf6', // Violet
+      description: 'Mes ordres de mission',
+    },
+    {
       id: 'alerts',
       icon: 'eye',
       label: 'BOLO',

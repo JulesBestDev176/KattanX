@@ -32,7 +32,7 @@ export interface Denonciation {
 
 export interface Plainte {
   id: string;
-  type: 'reçue' | 'déposée';
+  type: 'reçue' | 'déposée' | 'convocation';
   objet: string;
   description: string;
   commissariat?: string;

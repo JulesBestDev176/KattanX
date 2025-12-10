@@ -13,15 +13,17 @@ import { colors } from '../theme/colors';
 import { Button } from './ui/Button';
 
 interface CameraCaptureProps {
-  onImageCaptured: (imageUri: string) => void;
+  onImageCaptured: (uri: string) => void;
   onCancel?: () => void;
   title?: string;
+  mode?: 'photo' | 'video';
 }
 
 export const CameraCapture: React.FC<CameraCaptureProps> = ({
   onImageCaptured,
   onCancel,
   title = 'Capturer une photo',
+  mode = 'photo',
 }) => {
   const [imageUri, setImageUri] = useState<string | null>(null);
 
@@ -44,7 +46,9 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
     if (!hasPermission) return;
 
     const result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: mode === 'video' 
+        ? ImagePicker.MediaTypeOptions.Videos 
+        : ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 0.8,
@@ -89,9 +93,11 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
         <View style={styles.captureOptions}>
           <TouchableOpacity style={styles.optionButton} onPress={takePhoto}>
             <View style={styles.optionIcon}>
-              <Ionicons name="camera" size={32} color={colors.primary} />
+              <Ionicons name={mode === 'video' ? "videocam" : "camera"} size={32} color={colors.primary} />
             </View>
-            <Text style={styles.optionText}>Prendre une photo</Text>
+            <Text style={styles.optionText}>
+              {mode === 'video' ? 'Enregistrer une vidéo' : 'Prendre une photo'}
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.optionButton} onPress={pickImage}>

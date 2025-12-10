@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KattanX - Surveillance (Mode Sombre)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b68da",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-dark font-display text-white">
+<div class="flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex flex-col w-64 bg-[#0d151c] p-4 border-r border-slate-800">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDy2TLdArPwPdZlhkkYjpnQ8Wirwb4m5aInbVGDatY7wOhQQePyQmV-ZgJYcNvhIaKWF4yZdDLtQYtXJJXNFmnBCTvGx_-TVTUtblHhgLL-HNdnzm5_5sv583SzlJSGjxpbkpSozOhpUgWQqXM0-UAwolA1h9Dy8kTZdDrO-O5_oXKjJFWS0O0eGMUPFR_eKWvagNtSYlUtt29NjDFJihaRa21AHicTRr3pJ-NsuOLw0k_ZLVWi3Di7PQwhl62IivoDF1JvRA0niOU");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">KattanX</h1>
+<p class="text-slate-400 text-sm font-normal leading-normal">Security Control</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-300">dashboard</span>
+<p class="text-slate-300 text-sm font-medium leading-normal">Tableau de Bord</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">videocam</span>
+<p class="text-primary text-sm font-medium leading-normal">Surveillance</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-300">notifications</span>
+<p class="text-slate-300 text-sm font-medium leading-normal">Alertes</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-300">settings</span>
+<p class="text-slate-300 text-sm font-medium leading-normal">Paramètres</p>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-800 px-10 py-3">
+<div class="flex items-center gap-8">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Surveillance</h2>
+<label class="flex flex-col min-w-40 !h-10 w-80">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 flex border-none bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-white focus:outline-0 focus:ring-0 border-none bg-slate-800 focus:border-none h-full placeholder:text-slate-400 px-4 pl-2 text-base font-normal leading-normal" placeholder="Rechercher une caméra..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-slate-800 text-white hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-slate-800 text-white hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBrOKiIIIkwGr0zak_OySGe_VbETRihXy7sjnk6beSWpvmMYvT10auX_nI1g_rKDmOk1oFz_oP3N-SLafJAmHdPj8e_jH4fFn5RI49iL50k4lPdosH2d7TWn5Z-m9kDI78iGo3ceer1kuVffBr4Yeg9JwHvIeuGo_LamaCA97NCe7xIOBBGC2MJNHFMIb0FA9cANjiNc6_FQU69rQLaPTyDfLwS7sbZUklV8Xu8huFTcL4L8A-UZ26oCAyb-HqrR_Rf1rnZKxTUXVQ");'></div>
+</div>
+</header>
+<!-- Content Area with Right Sidebar -->
+<div class="flex flex-1">
+<!-- Camera Grid -->
+<div class="flex-1 p-6">
+<div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+<!-- Camera Card 1 (Critical Alert) -->
+<div class="relative group bg-cover bg-center flex flex-col justify-between rounded-xl aspect-video overflow-hidden border-2 border-red-500" data-alt="Live feed from Marché Sandaga - East Entrance showing a detected anomaly" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFW9TzYS1sp7y-CLzba1BS0DEZxr7gQ8c8ljhG2clAPfBi_Y-yItV0xGGnmm9o2uSPtKi94dMcbw4qVJ0XFOxZWnSXY6VzputwaRXL86p7DZmu0vGkZZHraQo3EvGbPfGEOtlAtJvBXe8qDJLOHrAonkJUErLrXXH9JuDzoRXsynHoTDGF6I8shV4RukQzAp2axx0a92gMl7XKjUaRwZrijQkzQr2M0xwm3dpUtDc9npSPOz03fNhKhZI7VhOJIXHQOBx1IBkDuIg");'>
+<div class="absolute top-3 left-3 bg-red-500/80 text-white px-2 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">Critique</div>
+<div class="p-4 flex flex-col justify-end h-full text-white">
+<h3 class="text-base font-bold leading-tight">Marché Sandaga - Entrée Est</h3>
+<p class="text-xs text-slate-300">14:32:15 - 24/07/2024</p>
+</div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">fullscreen</span></button>
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<!-- Camera Card 2 (Warning) -->
+<div class="relative group bg-cover bg-center flex flex-col justify-between rounded-xl aspect-video overflow-hidden border-2 border-yellow-500" data-alt="Live feed from Blaise Diagne Airport - Hall A showing a potential warning" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtYQKUs69MozyrNnM9GGtFr3Ykth_VTgteQAq-q2CduXfRgkHFYnVcAyPKVh5Dwbd7PdWY-PUpjL8atg0EoL0iC8dTyhN0BJf00CA1y0RLcfZVq6jaFKgMq7GJuLSxMHJLSnSThDPftkBvWMHYPeKUgQv6mb4Zz0gfCYOS5kqeXCuUJi4D2SJTitT-MLVzzB9WhhixOJBQvUnUahISlzKxR5eHcvj7doXvT4Mrbdqu8s1prtBfKcbXLIiIEjIjD2-lRhA2tnztHW8");'>
+<div class="absolute top-3 left-3 bg-yellow-500/80 text-black px-2 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">Alerte</div>
+<div class="p-4 flex flex-col justify-end h-full text-white">
+<h3 class="text-base font-bold leading-tight">Aéroport Blaise Diagne - Hall A</h3>
+<p class="text-xs text-slate-300">14:32:15 - 24/07/2024</p>
+</div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">fullscreen</span></button>
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<!-- Camera Card 3 (Normal) -->
+<div class="relative group bg-cover bg-center flex flex-col justify-between rounded-xl aspect-video overflow-hidden border-2 border-transparent" data-alt="Live feed from Port of Dakar - North Quay" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlvBOk4bTevt0yY7IIrSH1YqB_7CrYkFEOHORh3boUQ9KM-PZs_8RlaSVLtF8yhpFAWGQ7YP3tsuVwbuAoZKEpkhoQrX-BXPAIohDquMlc-4Lt4Bb1PeiYi-dOukDUQvzig5HqCsfET8-K0cKJKyq_rLNjrbq2KLiahEdRfIS4hZFmsDtZtfJ2gcl-cRIZy_HuCbGl4XXd-t49urajgGQDWAgoSkx9Z_GpVBRl7zjrw820aeCZvZtmFqOplmYUGwOzOCQha7kT0kg");'>
+<div class="p-4 flex flex-col justify-end h-full text-white">
+<h3 class="text-base font-bold leading-tight">Port de Dakar - Quai Nord</h3>
+<p class="text-xs text-slate-300">14:32:15 - 24/07/2024</p>
+</div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">fullscreen</span></button>
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<!-- Camera Card 4 (Normal) -->
+<div class="relative group bg-cover bg-center flex flex-col justify-between rounded-xl aspect-video overflow-hidden border-2 border-transparent" data-alt="Live feed from Dakar Station - Track 2" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIPl9GyVksP68NKX2Y3xoT8u8uPzYFdH9heN4eg41MU-o0IQP7TVCrGxKz8MkqTXbyK0T5QZKqbcFnCbolfhK4bu2WgWoWBjeGTqm7t5KDLEc5ALNsmRGcc-82rGeGp7mR16w_fkzuWAuanXXBuvt0evdfGuXoWN4PrbadrtN02gWMvWljhiW6olqIRrycPU_g-YRGuu6TNZujM68Xf1_n_mszkkehoKeTEiA2boIpge2vrbveI6w8PmIJiehNl3X0Y1jVD_HbOFQ");'>
+<div class="p-4 flex flex-col justify-end h-full text-white">
+<h3 class="text-base font-bold leading-tight">Gare de Dakar - Voie 2</h3>
+<p class="text-xs text-slate-300">14:32:15 - 24/07/2024</p>
+</div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">fullscreen</span></button>
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<!-- Camera Card 5 (Normal) -->
+<div class="relative group bg-cover bg-center flex flex-col justify-between rounded-xl aspect-video overflow-hidden border-2 border-transparent" data-alt="Live feed from Place de l'Indépendance" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPRQZ5z78evTJ6h7cVGqt33Z0tHh06x23uLXqq1Z09lOlmAj8sCnqrN517TOSU5RSHvE4gZoSayTAT7fMNi8Lw9oD3mIOqLUCjarYCp3QLfo2Mm3oHykzuOfKuBhhX5aMXCrWceZXTD_996ouiQkz7sMVHa8vDbUtHkm0GgXnIfzk0_K1SOoTKV5cq8nDJnlHQZthLpWHaytlz1LjaFTFBuPX9Vqt0pl6SHdpGWlxGpERjJ4ZoFoB0tU9dUiRdsS0FPiOcOMJo-Zw");'>
+<div class="p-4 flex flex-col justify-end h-full text-white">
+<h3 class="text-base font-bold leading-tight">Place de l'Indépendance</h3>
+<p class="text-xs text-slate-300">14:32:15 - 24/07/2024</p>
+</div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">fullscreen</span></button>
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<!-- Camera Card 6 (Normal) -->
+<div class="relative group bg-cover bg-center flex flex-col justify-between rounded-xl aspect-video overflow-hidden border-2 border-transparent" data-alt="Live feed from Université C.A.D - Library" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBHcpRUd4RfSIuF1HUbTXLPV_HktN0V61W92_RoUF7zMHIHgRJIMuFi7RCtYr4QMHmlQeo3RA2lhBFt5xUN1X84DDXGEqJIRuvLYePxkvZ-_T7P49w4lEpbryU4WokKgBjl_uj6Zvkpj85FXAsSSnTY5tqIZC56tzYqU9b3dBPiIS-lmKfQrHeTuap-xQ2cAW650yUkj-4xAKZCYiOg7JoRyn4KZQSjZwVMfg4_gLUsdjs1B0RR-8c_7JoRJEQoWlrHHE3oVk_Uy2E");'>
+<div class="p-4 flex flex-col justify-end h-full text-white">
+<h3 class="text-base font-bold leading-tight">Université C.A.D - Bibliothèque</h3>
+<p class="text-xs text-slate-300">14:32:15 - 24/07/2024</p>
+</div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">fullscreen</span></button>
+<button class="p-3 bg-white/20 rounded-full hover:bg-white/30"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Control Panel -->
+<aside class="w-80 bg-[#0d151c] border-l border-slate-800 flex flex-col p-6 gap-6">
+<!-- Camera Controls -->
+<div class="flex flex-col gap-4">
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em]">Contrôles de la Caméra</h3>
+<div class="bg-slate-800 p-4 rounded-xl flex flex-col items-center gap-4">
+<p class="text-sm font-medium text-slate-300">Marché Sandaga - Entrée Est</p>
+<!-- PTZ Controls -->
+<div class="grid grid-cols-3 gap-2 w-32">
+<div class="col-start-2 flex justify-center"><button class="h-10 w-10 flex items-center justify-center rounded-lg bg-slate-700 hover:bg-primary"><span class="material-symbols-outlined">keyboard_arrow_up</span></button></div>
+<div class="flex justify-center"><button class="h-10 w-10 flex items-center justify-center rounded-lg bg-slate-700 hover:bg-primary"><span class="material-symbols-outlined">keyboard_arrow_left</span></button></div>
+<div class="flex justify-center"><button class="h-10 w-10 flex items-center justify-center rounded-lg bg-slate-700 hover:bg-primary"><span class="material-symbols-outlined">zoom_in</span></button></div>
+<div class="flex justify-center"><button class="h-10 w-10 flex items-center justify-center rounded-lg bg-slate-700 hover:bg-primary"><span class="material-symbols-outlined">keyboard_arrow_right</span></button></div>
+<div class="col-start-2 flex justify-center"><button class="h-10 w-10 flex items-center justify-center rounded-lg bg-slate-700 hover:bg-primary"><span class="material-symbols-outlined">keyboard_arrow_down</span></button></div>
+<div class="col-start-3 row-start-2 flex justify-center"><button class="h-10 w-10 flex items-center justify-center rounded-lg bg-slate-700 hover:bg-primary"><span class="material-symbols-outlined">zoom_out</span></button></div>
+</div>
+<div class="w-full">
+<label class="text-sm text-slate-400 mb-2 block" for="quality">Qualité Vidéo</label>
+<select class="form-select w-full bg-slate-700 border-none rounded-lg text-white focus:ring-primary" id="quality">
+<option>HD (1080p)</option>
+<option>SD (720p)</option>
+<option>Low (480p)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Camera List -->
+<div class="flex flex-col gap-4 flex-1 min-h-0">
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em]">Liste des Caméras</h3>
+<div class="flex gap-2">
+<input class="form-input flex-1 w-full min-w-0 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-primary border-none bg-slate-800 h-10 placeholder:text-slate-400 px-4 text-sm" placeholder="Filtrer..." type="search"/>
+<button class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-slate-800 hover:bg-slate-700"><span class="material-symbols-outlined text-slate-300">filter_list</span></button>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 -mr-2">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 p-2 rounded-lg bg-primary/20 cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-red-500 flex-shrink-0"></div>
+<p class="text-sm font-medium text-white flex-1 truncate">Marché Sandaga - Entrée Est</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800 cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-yellow-500 flex-shrink-0"></div>
+<p class="text-sm font-medium text-slate-300 flex-1 truncate">Aéroport B. Diagne - Hall A</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800 cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
+<p class="text-sm font-medium text-slate-300 flex-1 truncate">Port de Dakar - Quai Nord</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800 cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
+<p class="text-sm font-medium text-slate-300 flex-1 truncate">Gare de Dakar - Voie 2</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800 cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
+<p class="text-sm font-medium text-slate-300 flex-1 truncate">Place de l'Indépendance</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800 cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
+<p class="text-sm font-medium text-slate-300 flex-1 truncate">Université C.A.D - Bibliothèque</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800 cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-slate-500 flex-shrink-0"></div>
+<p class="text-sm font-medium text-slate-500 flex-1 truncate">Stade Abdoulaye Wade - Parvis</p>
+</div>
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800 cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></div>
+<p class="text-sm font-medium text-slate-300 flex-1 truncate">V.D.N. - Rond-point Case-bi</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>

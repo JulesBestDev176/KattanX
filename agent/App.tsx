@@ -8,6 +8,8 @@ import { VerificationScreen } from './src/screens/VerificationScreen';
 import { AlertsScreen } from './src/screens/AlertsScreen';
 import { ReportsScreen } from './src/screens/ReportsScreen';
 import { NewReportScreen } from './src/screens/NewReportScreen';
+import { MissionsScreen } from './src/screens/MissionsScreen';
+import { CreateBoloScreen } from './src/screens/CreateBoloScreen';
 import { Toast, toast } from './src/components/ui/Toast';
 import { storage } from './src/utils/storage';
 import { Agent, Screen } from './src/types';
@@ -113,6 +115,7 @@ export default function App() {
         <AlertsScreen
           agentPosition={agent?.position}
           onBack={() => navigateTo('home')}
+          onNavigate={navigateTo}
         />
       )}
 
@@ -126,6 +129,23 @@ export default function App() {
       {currentScreen === 'newReport' && (
         <NewReportScreen
           onBack={() => navigateTo('reports')}
+        />
+      )}
+
+      {currentScreen === 'missions' && (
+        <MissionsScreen
+          onBack={() => navigateTo('home')}
+          agentPosition={agent?.position}
+        />
+      )}
+
+      {currentScreen === 'createBolo' && (
+        <CreateBoloScreen
+          onBack={() => navigateTo('alerts')}
+          onSubmit={(data) => {
+            console.log('BOLO Created:', data);
+            navigateTo('alerts');
+          }}
         />
       )}
 

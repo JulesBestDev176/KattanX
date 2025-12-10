@@ -59,6 +59,26 @@ export const AlertCard: React.FC<AlertCardProps> = ({ alerte, onPress }) => {
     }
   };
 
+  const getPriorityColor = () => {
+    switch (alerte.priority) {
+      case 'critical': return colors.destructive;
+      case 'high': return '#f97316'; // Orange
+      case 'medium': return '#fbbf24'; // Yellow
+      case 'low': return '#3b82f6'; // Blue
+      default: return colors.mutedForeground;
+    }
+  };
+
+  const getPriorityLabel = () => {
+    switch (alerte.priority) {
+      case 'critical': return 'CRITIQUE';
+      case 'high': return 'ÉLEVÉE';
+      case 'medium': return 'MOYENNE';
+      case 'low': return 'FAIBLE';
+      default: return '';
+    }
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -75,9 +95,17 @@ export const AlertCard: React.FC<AlertCardProps> = ({ alerte, onPress }) => {
           <Text style={styles.titre}>{alerte.titre}</Text>
           <Text style={styles.createdBy}>Par {alerte.createdByName}</Text>
         </View>
+        
+        {alerte.priority && (
+             <View style={[styles.priorityBadge, { backgroundColor: getPriorityColor() }]}>
+                <Ionicons name="alert-circle" size={10} color={colors.white} style={{marginRight: 2}} />
+                <Text style={styles.priorityText}>{getPriorityLabel()}</Text>
+             </View>
+        )}
+        
         <View style={[styles.statusBadge, { backgroundColor: getStatusColor() }]}>
           <Text style={styles.statusText}>
-            {alerte.status === 'active' ? 'ACTIVE' : alerte.status === 'resolue' ? 'RÉSOLUE' : 'ANNULÉE'}
+            {alerte.status === 'active' ? 'ACT' : 'RÉS'}
           </Text>
         </View>
       </View>
@@ -293,5 +321,18 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: colors.mutedForeground,
     textAlign: 'right',
+  },
+  priorityBadge: {
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+    borderRadius: 4,
+    marginRight: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  priorityText: {
+    fontSize: 9,
+    fontWeight: '700',
+    color: colors.white,
   },
 });

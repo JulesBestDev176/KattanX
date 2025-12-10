@@ -30,13 +30,7 @@ export const IndividuCard: React.FC<IndividuCardProps> = ({
     <View style={styles.container}>
       {/* Header avec photo et infos principales */}
       <View style={styles.header}>
-        {individu.photo ? (
-          <Image source={{ uri: individu.photo }} style={styles.photo} />
-        ) : (
-          <View style={[styles.photo, styles.photoPlaceholder]}>
-            <Ionicons name="person" size={40} color={colors.mutedForeground} />
-          </View>
-        )}
+        <Image source={require('../../assets/images/1.jpg')} style={styles.photo} />
         
         <View style={styles.headerInfo}>
           <Text style={styles.nom}>

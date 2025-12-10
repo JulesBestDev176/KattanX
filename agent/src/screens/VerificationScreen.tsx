@@ -29,7 +29,7 @@ const MOCK_INDIVIDU: IndividuVerifie = {
   nom: 'DIOP',
   prenom: 'Moussa',
   dateNaissance: '1989-05-12',
-  photo: 'https://randomuser.me/api/portraits/men/32.jpg',
+  photo: 'local-asset',
   tel: '77 123 45 67',
   adresse: 'Parcelles Assainies, Unité 15, Dakar',
   estRecherche: true,
@@ -77,10 +77,11 @@ const MOCK_INDIVIDU: IndividuVerifie = {
 };
 
 export const VerificationScreen: React.FC<VerificationScreenProps> = ({ onBack }) => {
-  const [selectedMethod, setSelectedMethod] = useState<'cni' | 'matricule' | 'photo'>('cni');
+  const [selectedMethod, setSelectedMethod] = useState<'cni' | 'matricule' | 'photo' | 'permis'>('cni');
   const [loading, setLoading] = useState(false);
   const [cniInput, setCniInput] = useState('');
   const [matriculeInput, setMatriculeInput] = useState('');
+  const [permisInput, setPermisInput] = useState('');
   const [showCamera, setShowCamera] = useState(false);
   const [individu, setIndividu] = useState<IndividuVerifie | null>(null);
 
@@ -101,6 +102,16 @@ export const VerificationScreen: React.FC<VerificationScreenProps> = ({ onBack }
       setLoading(false);
       setIndividu(MOCK_INDIVIDU);
       toast.success('Propriétaire trouvé (Mode Démo)');
+    }, 1500);
+  };
+
+  const handleVerifyByPermis = async () => {
+    // Simulation de chargement
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setIndividu(MOCK_INDIVIDU);
+      toast.success('Permis trouvé (Mode Démo)');
     }, 1500);
   };
 
@@ -184,6 +195,24 @@ export const VerificationScreen: React.FC<VerificationScreenProps> = ({ onBack }
                   <Text style={styles.infoText}>
                     Utilisez la reconnaissance faciale IA pour identifier un individu
                   </Text>
+                </View>
+              )}
+
+              {selectedMethod === 'permis' && (
+                <View style={styles.methodContent}>
+                  <Input
+                    label="Numéro de Permis"
+                    value={permisInput}
+                    onChangeText={setPermisInput}
+                    placeholder="12345/2023"
+                    keyboardType="numeric"
+                  />
+                  <Button
+                    title={loading ? 'Recherche...' : 'Vérifier'}
+                    onPress={handleVerifyByPermis}
+                    disabled={loading}
+                    loading={loading}
+                  />
                 </View>
               )}
 

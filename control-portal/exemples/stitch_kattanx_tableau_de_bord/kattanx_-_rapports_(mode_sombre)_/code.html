@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KattanX - Rapports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0b68da",
+              "background-light": "#f5f7f8",
+              "background-dark": "#101822",
+              "surface-dark": "#182534",
+              "border-dark": "#223449",
+              "text-primary-dark": "#ffffff",
+              "text-secondary-dark": "#90aacb"
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display" style='font-family: Inter, "Noto Sans", sans-serif;'>
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<div class="flex-shrink-0 bg-[#101923] h-screen sticky top-0">
+<div class="flex h-full min-h-[700px] flex-col justify-between p-4 w-64">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 px-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="KattanX company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA30Qg8pwQVmwuo0GKVTVQCrR7s_qL3piRrRVF779ULhb7UdO7cd_t7pnZZMef8B89PP00dL8lX3h5XCRz2AUmUABxJ_5e4dU9R0I4gKnx5fg5gpLAnVhVGrV37BGolZhLJ7yERTBC4I1w06E2eiGooQyef7CsZOLMFhGjLx9uh2zpEo3ijmwi4mlRM4dLuY4Flscgrf7GkcJxegTeLEbKa_rLPIRvjXM84KLbuOj4wd4PVWbUm42myDsR88MH8B3DRVBH77jSJMag");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-primary-dark text-base font-medium leading-normal">KattanX</h1>
+<p class="text-text-secondary-dark text-sm font-normal leading-normal">Portail de Contrôle</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 text-text-primary-dark hover:bg-border-dark rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Tableau de Bord</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-primary-dark hover:bg-border-dark rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<p class="text-sm font-medium leading-normal">Alertes</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-primary-dark hover:bg-border-dark rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium leading-normal">Agents</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-primary-dark hover:bg-border-dark rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">videocam</span>
+<p class="text-sm font-medium leading-normal">Caméras</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl bg-border-dark text-text-primary-dark" href="#">
+<span class="material-symbols-outlined fill">description</span>
+<p class="text-sm font-medium leading-normal">Rapports</p>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-text-primary-dark hover:bg-border-dark rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Paramètres</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-primary-dark hover:bg-border-dark rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<p class="text-sm font-medium leading-normal">Aide</p>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex flex-col flex-1 w-full">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark px-10 py-3 bg-[#101923] sticky top-0 z-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6">
+<span class="material-symbols-outlined fill text-2xl">description</span>
+</div>
+<h2 class="text-text-primary-dark text-lg font-bold leading-tight tracking-[-0.015em]">Rapports</h2>
+</div>
+<div class="flex flex-1 justify-end items-center gap-4">
+<div class="flex gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 w-10 bg-surface-dark text-text-primary-dark text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 w-10 bg-surface-dark text-text-primary-dark text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbQdQAxo7w8-lAqUcNWufwNLpfXGwvh6cJRTBfo7Q4tdDgAyULnRwudU6QzXCwKYhgALtCHYcIM4OJLFMDDFsfimVKoi81SQmWojEaEeHsOIQz700Nxn4M9iAIOf1uF6WgJHZq_55mI6D9QLlORgZP1aPzCFxY_RdyazqHT5dGr5KPV75NyT45Rb8WhEYD-8PolMSp33Zybx4OM-thdRO277JkmkR9ctsqJ7UthX_eY2pf28n-AHPHIO_Yff5T9oQ5-lhNTD3MA2I");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-10 bg-background-dark">
+<div class="bg-surface-dark p-6 rounded-xl border border-border-dark">
+<!-- SectionHeader -->
+<h2 class="text-text-primary-dark text-[22px] font-bold leading-tight tracking-[-0.015em] pb-5">Générer un Nouveau Rapport</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- TextField: Type de Rapport -->
+<div class="flex flex-col">
+<label class="text-text-primary-dark text-base font-medium leading-normal pb-2" for="report-type">Type de Rapport</label>
+<select class="form-select w-full rounded-xl text-text-primary-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-[#314a68] bg-[#101822] focus:border-primary h-14 placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal" id="report-type">
+<option>Rapports d'Alertes</option>
+<option>Rapports d'Activité des Agents</option>
+<option>Rapports de Surveillance des Caméras</option>
+<option>Rapports de Performances des Brigades</option>
+</select>
+</div>
+<!-- TextField: Agent/Caméra -->
+<div class="flex flex-col">
+<label class="text-text-primary-dark text-base font-medium leading-normal pb-2" for="agent-camera">Agent / Caméra</label>
+<select class="form-select w-full rounded-xl text-text-primary-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-[#314a68] bg-[#101822] focus:border-primary h-14 placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal" id="agent-camera">
+<option>Tous</option>
+<option>Agent 001 - A. Diop</option>
+<option>Caméra C12 - Marché Sandaga</option>
+<option>Agent 007 - M. Fall</option>
+</select>
+</div>
+<!-- TextField: Type d'Alerte -->
+<div class="flex flex-col">
+<label class="text-text-primary-dark text-base font-medium leading-normal pb-2" for="alert-type">Type d'Alerte</label>
+<select class="form-select w-full rounded-xl text-text-primary-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-[#314a68] bg-[#101822] focus:border-primary h-14 placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal" id="alert-type">
+<option>Toutes</option>
+<option>Intrusion</option>
+<option>Mouvement Suspect</option>
+<option>Incendie</option>
+</select>
+</div>
+</div>
+<!-- Date Range Selection -->
+<div class="mt-6">
+<p class="text-text-primary-dark text-base font-medium leading-normal pb-2">Plage de Dates</p>
+<!-- CalendarPicker -->
+<div class="flex flex-wrap items-start justify-center gap-6 p-4 border border-border-dark rounded-xl bg-[#101822]">
+<div class="flex min-w-72 max-w-[336px] flex-1 flex-col gap-0.5">
+<div class="flex items-center p-1 justify-between">
+<button class="text-white flex size-10 items-center justify-center rounded-full hover:bg-border-dark">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<p class="text-text-primary-dark text-base font-bold leading-tight flex-1 text-center">Octobre 2023</p>
+</div>
+<div class="grid grid-cols-7 text-center">
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">D</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">L</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">M</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">M</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">J</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">V</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">S</p>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">1</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">2</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">3</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">4</button>
+<button class="h-10 w-full text-white rounded-l-full bg-primary/30"><div class="flex size-full items-center justify-center rounded-l-full bg-primary">5</div></button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">6</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">7</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">8</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">9</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">10</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">11</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">12</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">13</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">14</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">15</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">16</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">17</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">18</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">19</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">20</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">21</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">22</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">23</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">24</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">25</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">26</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">27</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">28</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">29</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">30</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">31</button>
+</div>
+</div>
+<div class="flex min-w-72 max-w-[336px] flex-1 flex-col gap-0.5">
+<div class="flex items-center p-1 justify-between">
+<p class="text-text-primary-dark text-base font-bold leading-tight flex-1 text-center">Novembre 2023</p>
+<button class="text-white flex size-10 items-center justify-center rounded-full hover:bg-border-dark">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-7 text-center">
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">D</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">L</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">M</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">M</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">J</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">V</p>
+<p class="text-text-secondary-dark text-[13px] font-bold leading-normal h-10 flex items-center justify-center">S</p>
+<button class="h-10 w-full col-start-4 bg-primary/30 text-white text-sm font-medium">1</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">2</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">3</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">4</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">5</button>
+<button class="h-10 w-full bg-primary/30 text-white text-sm font-medium">6</button>
+<button class="h-10 w-full text-white rounded-r-full bg-primary/30"><div class="flex size-full items-center justify-center rounded-r-full bg-primary">7</div></button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">8</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">9</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">10</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">11</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">12</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">13</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">14</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">15</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">16</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">17</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">18</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">19</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">20</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">21</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">22</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">23</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">24</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">25</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">26</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">27</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">28</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">29</button>
+<button class="h-10 w-full text-white text-sm font-medium leading-normal rounded-full hover:bg-border-dark">30</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Generate Button -->
+<div class="mt-6 flex justify-end">
+<button class="flex items-center justify-center gap-2 rounded-xl bg-primary h-12 px-6 text-white font-bold text-base leading-normal hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">add_chart</span>
+                            Générer le Rapport
+                        </button>
+</div>
+</div>
+<!-- Recent Reports Section -->
+<div class="mt-10">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-text-primary-dark text-[22px] font-bold leading-tight tracking-[-0.015em]">Rapports Récents</h2>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary-dark">search</span>
+<input class="w-72 rounded-xl text-text-primary-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-dark bg-surface-dark focus:border-primary h-12 placeholder:text-text-secondary-dark pl-10 text-base font-normal" placeholder="Rechercher un rapport..." type="text"/>
+</div>
+</div>
+<!-- Reports Table -->
+<div class="overflow-x-auto bg-surface-dark rounded-xl border border-border-dark">
+<table class="w-full text-left text-text-secondary-dark">
+<thead class="text-xs uppercase bg-[#101822]">
+<tr>
+<th class="px-6 py-4 font-semibold" scope="col">Titre du Rapport</th>
+<th class="px-6 py-4 font-semibold" scope="col">Date de Génération</th>
+<th class="px-6 py-4 font-semibold" scope="col">Filtres Appliqués</th>
+<th class="px-6 py-4 font-semibold" scope="col">Statut</th>
+<th class="px-6 py-4 font-semibold text-right" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-t border-border-dark">
+<td class="px-6 py-4 text-text-primary-dark font-medium whitespace-nowrap">Rapport d'Alertes - Oct 2023</td>
+<td class="px-6 py-4">25 Octobre 2023, 14:30</td>
+<td class="px-6 py-4">Toutes alertes, toutes caméras</td>
+<td class="px-6 py-4"><span class="bg-green-500/20 text-green-400 text-xs font-medium me-2 px-2.5 py-1 rounded-full">Complété</span></td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">visibility</span></button>
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">download</span></button>
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">delete</span></button>
+</td>
+</tr>
+<tr class="border-t border-border-dark">
+<td class="px-6 py-4 text-text-primary-dark font-medium whitespace-nowrap">Activité Agent 007 - Semaine 42</td>
+<td class="px-6 py-4">24 Octobre 2023, 09:00</td>
+<td class="px-6 py-4">Agent 007, Zone Nord</td>
+<td class="px-6 py-4"><span class="bg-green-500/20 text-green-400 text-xs font-medium me-2 px-2.5 py-1 rounded-full">Complété</span></td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">visibility</span></button>
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">download</span></button>
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">delete</span></button>
+</td>
+</tr>
+<tr class="border-t border-border-dark">
+<td class="px-6 py-4 text-text-primary-dark font-medium whitespace-nowrap">Rapport Journalier - 23 Octobre</td>
+<td class="px-6 py-4">23 Octobre 2023, 23:59</td>
+<td class="px-6 py-4">Toutes activités</td>
+<td class="px-6 py-4"><span class="bg-green-500/20 text-green-400 text-xs font-medium me-2 px-2.5 py-1 rounded-full">Complété</span></td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">visibility</span></button>
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">download</span></button>
+<button class="p-2 rounded-lg hover:bg-border-dark"><span class="material-symbols-outlined text-text-secondary-dark align-middle">delete</span></button>
+</td>
+</tr>
+<tr class="border-t border-border-dark">
+<td class="px-6 py-4 text-text-primary-dark font-medium whitespace-nowrap">Performance Brigades - Mensuel</td>
+<td class="px-6 py-4">En cours...</td>
+<td class="px-6 py-4">Génération automatique</td>
+<td class="px-6 py-4"><span class="bg-amber-500/20 text-amber-400 text-xs font-medium me-2 px-2.5 py-1 rounded-full">En cours</span></td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 rounded-lg hover:bg-border-dark" disabled=""><span class="material-symbols-outlined text-text-secondary-dark/50 align-middle">visibility</span></button>
+<button class="p-2 rounded-lg hover:bg-border-dark" disabled=""><span class="material-symbols-outlined text-text-secondary-dark/50 align-middle">download</span></button>
+<button class="p-2 rounded-lg hover:bg-border-dark" disabled=""><span class="material-symbols-outlined text-text-secondary-dark/50 align-middle">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

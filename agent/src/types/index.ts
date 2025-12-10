@@ -1,4 +1,4 @@
-export type Screen = 'auth' | 'home' | 'verification' | 'alerts' | 'profile' | 'reports' | 'newReport';
+export type Screen = 'auth' | 'home' | 'verification' | 'alerts' | 'missions' | 'profile' | 'reports' | 'newReport' | 'createBolo';
 
 export interface Agent {
   id: string;
@@ -107,6 +107,9 @@ export interface Alerte {
 
   // Distance (calculée côté client)
   distance?: number;
+
+  // Priorité (pour dispatching intelligent)
+  priority?: 'critical' | 'high' | 'medium' | 'low';
 }
 
 export interface Suspect {
@@ -156,7 +159,7 @@ export interface DemandeArrestation {
 }
 
 export interface VerificationMethod {
-  type: 'cni' | 'matricule' | 'photo';
+  type: 'cni' | 'matricule' | 'photo' | 'permis';
   label: string;
   icon: string;
   description: string;
@@ -217,7 +220,7 @@ export interface VerificationReport extends BaseReport {
   type: 'verification';
   individuCNI: string;
   individuName: string;
-  verificationType: 'cni' | 'matricule' | 'photo';
+  verificationType: 'cni' | 'matricule' | 'photo' | 'permis';
   result: 'clean' | 'wanted' | 'has_fines' | 'has_record';
   notes?: string;
 }
@@ -257,10 +260,29 @@ export interface BOLOReport extends BaseReport {
   boloStatus: 'active' | 'found' | 'cancelled'; // Renamed to avoid conflict with BaseReport.status
 }
 
+export type MissionStatus = 'pending' | 'accepted' | 'in_progress' | 'completed';
+
+export interface Mission {
+  id: string;
+  title: string;
+  description: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  location: {
+    latitude: number;
+    longitude: number;
+    address: string;
+  };
+  status: MissionStatus;
+  objectives: string[];
+  createdAt: string;
+  assignedBy: string; // Dispatcher ID or System
+}
+
 export type Report =
   | MissionReport
   | VerificationReport
   | AlertReport
   | JudicialReport
   | BOLOReport;
+
 
