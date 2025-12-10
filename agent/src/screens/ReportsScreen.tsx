@@ -29,7 +29,6 @@ interface ReportTypeCard {
     screen?: Screen;
 }
 
-// Données simulées pour la démonstration
 const MOCK_STATS = {
     totalReports: 42,
     pendingValidation: 5,
@@ -365,7 +364,7 @@ export const ReportsScreen: React.FC<ReportsScreenProps> = ({ onBack, onNavigate
                     )}
                 </ScrollView>
 
-                <TouchableOpacity style={styles.fab} activeOpacity={0.8}>
+                <TouchableOpacity style={styles.fab} activeOpacity={0.8} onPress={() => onNavigate('newReport')}>
                     <Ionicons name="add" size={28} color={colors.white} />
                     <Text style={styles.fabText}>Nouveau rapport</Text>
                 </TouchableOpacity>

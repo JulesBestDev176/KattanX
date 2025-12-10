@@ -1,4 +1,4 @@
-export type Screen = 'auth' | 'home' | 'verification' | 'alerts' | 'profile' | 'reports';
+export type Screen = 'auth' | 'home' | 'verification' | 'alerts' | 'profile' | 'reports' | 'newReport';
 
 export interface Agent {
   id: string;

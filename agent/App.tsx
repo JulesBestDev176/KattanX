@@ -7,6 +7,7 @@ import { ProfileScreen } from './src/screens/ProfileScreen';
 import { VerificationScreen } from './src/screens/VerificationScreen';
 import { AlertsScreen } from './src/screens/AlertsScreen';
 import { ReportsScreen } from './src/screens/ReportsScreen';
+import { NewReportScreen } from './src/screens/NewReportScreen';
 import { Toast, toast } from './src/components/ui/Toast';
 import { storage } from './src/utils/storage';
 import { Agent, Screen } from './src/types';
@@ -119,6 +120,12 @@ export default function App() {
         <ReportsScreen
           onBack={() => navigateTo('home')}
           onNavigate={navigateTo}
+        />
+      )}
+
+      {currentScreen === 'newReport' && (
+        <NewReportScreen
+          onBack={() => navigateTo('reports')}
         />
       )}
 
