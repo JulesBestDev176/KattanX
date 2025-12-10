@@ -56,20 +56,20 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
   const startService = async () => {
     console.log('[DEMO] Démarrage du service...');
-    
+
     // Démarrer le suivi de localisation
     const stopFn = await startLocationTracking(async (position) => {
       console.log('[DEMO] Position mise à jour:', position);
-      
+
       // Mettre à jour la position de l'agent
       const updatedAgent: Agent = {
         ...agent,
         position,
         enService: true,
       };
-      
+
       onUpdateAgent(updatedAgent);
-      
+
       // TODO: Envoyer la position au serveur Supabase pour partage en temps réel
     });
 
@@ -80,7 +80,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
   const stopService = () => {
     console.log('[DEMO] Arrêt du service...');
-    
+
     // Arrêter le suivi de localisation
     if (locationStopFn) {
       locationStopFn();
@@ -92,7 +92,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       ...agent,
       enService: false,
     };
-    
+
     onUpdateAgent(updatedAgent);
   };
 
@@ -117,10 +117,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     },
     {
       id: 'alerts',
-      icon: 'notifications',
-      label: 'Alertes',
+      icon: 'eye',
+      label: 'BOLO',
       color: colors.destructive,
-      description: 'Voir et créer des alertes',
+      description: 'Recherche de personnes',
     },
     {
       id: 'profile',
@@ -128,6 +128,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       label: 'Profil',
       color: colors.secondary,
       description: 'Mon profil agent',
+    },
+    {
+      id: 'reports',
+      icon: 'document-text',
+      label: 'Rapports',
+      color: '#f59e0b', // Amber/Orange color
+      description: 'Générer et consulter des rapports',
     },
   ];
 

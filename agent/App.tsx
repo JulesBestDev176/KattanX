@@ -6,6 +6,7 @@ import { HomeScreen } from './src/screens/HomeScreen';
 import { ProfileScreen } from './src/screens/ProfileScreen';
 import { VerificationScreen } from './src/screens/VerificationScreen';
 import { AlertsScreen } from './src/screens/AlertsScreen';
+import { ReportsScreen } from './src/screens/ReportsScreen';
 import { Toast, toast } from './src/components/ui/Toast';
 import { storage } from './src/utils/storage';
 import { Agent, Screen } from './src/types';
@@ -81,9 +82,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      
+
       {currentScreen === 'auth' && <AuthScreen onLogin={handleLogin} />}
-      
+
       {currentScreen === 'home' && agent && (
         <HomeScreen
           agent={agent}
@@ -92,7 +93,7 @@ export default function App() {
           onUpdateAgent={handleUpdateAgent}
         />
       )}
-      
+
       {currentScreen === 'profile' && agent && (
         <ProfileScreen
           agent={agent}
@@ -100,17 +101,24 @@ export default function App() {
           onLogout={handleLogout}
         />
       )}
-      
+
       {currentScreen === 'verification' && (
         <VerificationScreen
           onBack={() => navigateTo('home')}
         />
       )}
-      
+
       {currentScreen === 'alerts' && (
         <AlertsScreen
           agentPosition={agent?.position}
           onBack={() => navigateTo('home')}
+        />
+      )}
+
+      {currentScreen === 'reports' && (
+        <ReportsScreen
+          onBack={() => navigateTo('home')}
+          onNavigate={navigateTo}
         />
       )}
 

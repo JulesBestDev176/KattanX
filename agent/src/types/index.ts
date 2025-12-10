@@ -1,4 +1,4 @@
-export type Screen = 'auth' | 'home' | 'verification' | 'alerts' | 'profile';
+export type Screen = 'auth' | 'home' | 'verification' | 'alerts' | 'profile' | 'reports';
 
 export interface Agent {
   id: string;
@@ -33,19 +33,19 @@ export interface IndividuVerifie {
   photo?: string;
   tel?: string;
   adresse?: string;
-  
+
   // Statuts
   estRecherche: boolean;
   motifRecherche?: string;
-  
+
   // Amendes
   amendes: Amende[];
   totalAmendes: number;
-  
+
   // Casier judiciaire
   casierJudiciaire: CasierEntry[];
   estConnuJustice: boolean;
-  
+
   // Véhicules
   vehicules?: Vehicule[];
 }
@@ -84,27 +84,27 @@ export interface Alerte {
   type: 'fugitif' | 'vol' | 'incident' | 'autre';
   titre: string;
   description: string;
-  
+
   // Suspect
   suspect?: Suspect;
-  
+
   // Localisation
   localisation: {
     latitude: number;
     longitude: number;
     adresse?: string;
   };
-  
+
   // Médias
   images?: string[];
-  
+
   // Métadonnées
   createdBy: string; // Agent ID
   createdByName: string;
   createdAt: string;
   updatedAt?: string;
   status: 'active' | 'resolue' | 'annulee';
-  
+
   // Distance (calculée côté client)
   distance?: number;
 }
@@ -115,7 +115,7 @@ export interface Suspect {
   prenom?: string;
   cni?: string;
   photo?: string;
-  
+
   // Véhicule
   vehicule?: {
     matricule?: string;
@@ -124,7 +124,7 @@ export interface Suspect {
     couleur?: string;
     description?: string;
   };
-  
+
   // Description physique
   sexe?: 'homme' | 'femme' | 'inconnu';
   ageMin?: number;
@@ -161,3 +161,106 @@ export interface VerificationMethod {
   icon: string;
   description: string;
 }
+
+// Report Types
+export type ReportType =
+  | 'mission'
+  | 'verification'
+  | 'alert'
+  | 'judicial'
+  | 'bolo';
+
+export type ReportStatus =
+  | 'draft'
+  | 'pending'
+  | 'validated'
+  | 'archived';
+
+export interface BaseReport {
+  id: string;
+  type: ReportType;
+  status: ReportStatus;
+  createdBy: string;
+  createdByName: string;
+  createdAt: string;
+  updatedAt?: string;
+  validatedBy?: string;
+  validatedAt?: string;
+  location?: {
+    latitude: number;
+    longitude: number;
+    address?: string;
+  };
+  media?: {
+    photos?: string[];
+    videos?: string[];
+    audio?: string[];
+  };
+}
+
+export interface MissionReport extends BaseReport {
+  type: 'mission';
+  missionId?: string;
+  missionTitle: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  description: string;
+  actionsPerformed: string[];
+  outcome: string;
+  personsInvolved?: {
+    name: string;
+    cni?: string;
+    role: 'suspect' | 'witness' | 'victim';
+  }[];
+}
+
+export interface VerificationReport extends BaseReport {
+  type: 'verification';
+  individuCNI: string;
+  individuName: string;
+  verificationType: 'cni' | 'matricule' | 'photo';
+  result: 'clean' | 'wanted' | 'has_fines' | 'has_record';
+  notes?: string;
+}
+
+export interface AlertReport extends BaseReport {
+  type: 'alert';
+  alertId: string;
+  alertType: 'fugitif' | 'vol' | 'incident' | 'autre';
+  alertTitle: string;
+  resolution?: string;
+  resolved: boolean;
+}
+
+export interface JudicialReport extends BaseReport {
+  type: 'judicial';
+  complaintType: 'against_x' | 'against_person';
+  plaintiffName: string;
+  plaintiffCNI: string;
+  accusedName?: string;
+  accusedCNI?: string;
+  facts: string;
+  legalBasis?: string;
+  transferredTo?: string;
+}
+
+export interface BOLOReport extends BaseReport {
+  type: 'bolo';
+  suspectDescription: Suspect;
+  lastSeenLocation: {
+    latitude: number;
+    longitude: number;
+    address?: string;
+    timestamp: string;
+  };
+  direction?: string;
+  reliability: 'low' | 'medium' | 'high';
+  boloStatus: 'active' | 'found' | 'cancelled'; // Renamed to avoid conflict with BaseReport.status
+}
+
+export type Report =
+  | MissionReport
+  | VerificationReport
+  | AlertReport
+  | JudicialReport
+  | BOLOReport;
+
